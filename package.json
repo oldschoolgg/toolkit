@@ -1,0 +1,36 @@
+{
+	"name": "@oldschoolgg/toolkit",
+	"version": "0.0.1",
+	"description": "Oldschoolgg Toolkit",
+	"main": "dist/index.js",
+	"scripts": {
+		"lint": "concurrently \"prettier *.{js,md} --write\" \"eslint *.ts \"{src,tests}/**/*.ts\" --fix\"",
+		"build:tsc": "tsc -p src",
+		"build": "yarn wipedist && yarn build:tsc",
+		"wipedist": "rimraf \"dist/\"",
+		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\"",
+		"test:lint": "eslint \"{src,tests}/**/*.ts\"",
+		"test:unit": "vitest run --coverage",
+		"dev": "yarn wipedist && tsc -w -p src"
+	},
+	"dependencies": {
+		"e": "^0.2.3"
+	},
+	"peerDependencies": {
+		"discord.js": "^14.6.0"
+	},
+	"devDependencies": {
+		"@oldschoolgg/eslint-config": "^2.0.13",
+		"@oldschoolgg/ts-config": "^0.0.1",
+		"@types/node": "^14.18.12",
+		"@vitest/coverage-c8": "^0.28.4",
+		"concurrently": "^6.5.1",
+		"discord.js": "^14.6.0",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.8.4",
+		"vitest": "^0.28.3"
+	},
+	"engines": {
+		"node": ">=18.12.0"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"extends": "@oldschoolgg/ts-config",
+	"compilerOptions": {
+		"allowJs": true,
+		"checkJs": false,
+		"skipLibCheck": true,
+		"types": ["node", "discord.js"],
+		"esModuleInterop": true
+	}
+}
