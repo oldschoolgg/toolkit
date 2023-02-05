@@ -63,4 +63,10 @@ export class SimpleTable<T> {
 		const item: SimpleTableItem<T>['item'] | null = this.table[result]?.item ?? null;
 		return item;
 	}
+
+	public rollOrThrow(): SimpleTableItem<T>['item'] {
+		const result = this.roll();
+		if (result === null) throw new Error('Received null from SimpleTable, but expect not-null.');
+		return result;
+	}
 }

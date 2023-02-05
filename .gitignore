@@ -1,4 +1,3 @@
-# Klasa
 *.log
 dist/
 .env
