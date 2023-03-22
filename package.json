@@ -1,6 +1,6 @@
 {
 	"name": "@oldschoolgg/toolkit",
-	"version": "0.0.11",
+	"version": "0.0.12",
 	"description": "Oldschoolgg Toolkit",
 	"main": "dist/index.js",
 	"scripts": {
@@ -11,10 +11,12 @@
 		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\"",
 		"test:lint": "eslint \"{src,tests}/**/*.ts\"",
 		"test:unit": "vitest run --coverage",
-		"dev": "yarn wipedist && tsc -w -p src"
+		"dev": "yarn wipedist && tsc -w -p src",
+		"test:watch": "vitest --coverage"
 	},
 	"dependencies": {
-		"e": "^0.2.3"
+		"e": "^0.2.3",
+		"math-expression-evaluator": "^1.3.14"
 	},
 	"peerDependencies": {
 		"discord.js": "^14.6.0"
@@ -28,6 +30,7 @@
 		"discord.js": "^14.6.0",
 		"rimraf": "^3.0.2",
 		"typescript": "^4.8.4",
+		"@types/math-expression-evaluator": "^1.2.2",
 		"vitest": "^0.28.3"
 	},
 	"engines": {

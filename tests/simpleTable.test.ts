@@ -13,4 +13,9 @@ test('SimpleTable', () => {
 	expect(table.totalWeight).toEqual(1);
 	expect(table.roll()).toEqual('X');
 	expect(table.rollOrThrow()).toEqual('X');
+
+	table.delete('X');
+	expect(table.roll()).toEqual(null);
+
+	expect(() => table.delete('X')).toThrow();
 });
