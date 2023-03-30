@@ -1,4 +1,4 @@
-import { Channel, DMChannel, PermissionsBitField, TextChannel } from 'discord.js';
+import { Channel, DMChannel, GuildTextBasedChannel, PermissionsBitField, TextChannel, User } from 'discord.js';
 
 /* c8 ignore start */
 /**
@@ -15,4 +15,12 @@ export function channelIsSendable(channel: Channel | undefined | null): channel 
 	}
 
 	return true;
+}
+
+export function isGuildChannel(channel?: Channel): channel is GuildTextBasedChannel {
+	return channel !== undefined && !channel.isDMBased() && Boolean(channel.guild);
+}
+
+export function discrimName(user: User) {
+	return `${user.username}#${user.discriminator}`;
 }

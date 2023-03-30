@@ -1,3 +1,5 @@
-export { SimpleTable } from './lib/SimpleTable';
-export { randomSnowflake } from './util/discord';
-export { channelIsSendable } from './util/discordJS';
+export * from './lib/SimpleTable';
+export * from './util/discord';
+export * from './util/discordJS';
+export * from './util/misc';
+export * from './util/runescape';
