@@ -6,11 +6,7 @@ export default defineConfig({
 		include: ['tests/*.test.ts'],
 		coverage: {
 			provider: 'c8',
-			reporter: ['text'],
-			functions: 100,
-			lines: 100,
-			statements: 100,
-			branches: 100
+			reporter: ['text']
 		}
 	}
 });

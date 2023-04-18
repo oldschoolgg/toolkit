@@ -23,3 +23,44 @@ WHERE ((osb_cl_percent + bso_cl_percent) / 2) >= (
 												  WHERE id = ${userID}
 												 );`;
 }
+
+const englishOrdinalRules = new Intl.PluralRules('en', { type: 'ordinal' });
+
+const suffixes: { [key: string]: string } = {
+	one: 'st',
+	two: 'nd',
+	few: 'rd',
+	other: 'th'
+};
+
+export function formatOrdinal(number: number): string {
+	const suffix = suffixes[englishOrdinalRules.select(number)];
+	return `${number}${suffix}`;
+}
+
+export function toTitleCase(str: string) {
+	const splitStr = str.toLowerCase().split(' ');
+	for (let i = 0; i < splitStr.length; i++) {
+		splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+	}
+	return splitStr.join(' ');
+}
+
+const validChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+export function miniID(length: number): string {
+	let id = '';
+
+	for (let i = 0; i < length; i++) {
+		const randomChar = validChars[Math.floor(Math.random() * validChars.length)];
+
+		id += randomChar;
+	}
+
+	return id;
+}
+
+export function truncateString(str: string, maxLen: number) {
+	if (str.length < maxLen) return str;
+	return `${str.slice(0, maxLen - 3)}...`;
+}

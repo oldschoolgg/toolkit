@@ -1,4 +1,4 @@
-import { Channel, DMChannel, GuildTextBasedChannel, PermissionsBitField, TextChannel, User } from 'discord.js';
+import { Channel, DMChannel, GuildTextBasedChannel, TextChannel, User } from 'discord.js';
 
 /* c8 ignore start */
 /**
@@ -9,7 +9,9 @@ export function channelIsSendable(channel: Channel | undefined | null): channel 
 	if (!channel) return false;
 	if (!channel.isTextBased()) return false;
 	if (!('guild' in channel)) return true;
-	const canSend = channel.permissionsFor(channel.client.user!)!.has(PermissionsBitField.Flags.ViewChannel);
+	const permissions = channel.permissionsFor(channel.client.user!);
+	if (!permissions) return false;
+	const canSend = permissions.has('ViewChannel') && permissions.has('SendMessages');
 	if (!(channel instanceof DMChannel) && !(channel instanceof TextChannel) && canSend) {
 		return false;
 	}
