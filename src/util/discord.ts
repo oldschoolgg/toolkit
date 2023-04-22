@@ -1,4 +1,4 @@
-import type { Client } from 'discord.js';
+import { Client, Guild, PermissionsBitField } from 'discord.js';
 import type { MahojiClient } from 'mahoji';
 
 const discordEpoch = 1_420_070_400_000;
@@ -45,4 +45,10 @@ export function mentionCommand(
 	}
 
 	return `</${name}:${apiCommand.id}>`;
+}
+
+export async function hasBanMemberPerms(userID: string, guild: Guild) {
+	const member = await guild.members.fetch(userID).catch(() => null);
+	if (!member) return false;
+	return member.permissions.has(PermissionsBitField.Flags.BanMembers);
 }
