@@ -27,8 +27,19 @@ export function sanitizeBank(bank: Bank) {
 	return bank;
 }
 
+function cleanItemName(itemName: string) {
+	return itemName.replace(/’/g, "'");
+}
+
 export function getItem(itemName: string | number | undefined): Item | null {
 	if (!itemName) return null;
-	const item = Items.get(itemName);
+	let identifier: string | number | undefined = '';
+	if (typeof itemName === 'number') {
+		identifier = itemName;
+	} else {
+		const parsed = Number(itemName);
+		identifier = isNaN(parsed) ? cleanItemName(itemName) : parsed;
+	}
+	const item = Items.get(identifier);
 	return item ?? null;
 }
