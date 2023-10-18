@@ -1,6 +1,6 @@
 {
 	"name": "@oldschoolgg/toolkit",
-	"version": "0.0.19",
+	"version": "0.0.20",
 	"description": "Oldschoolgg Toolkit",
 	"main": "dist/index.js",
 	"scripts": {
