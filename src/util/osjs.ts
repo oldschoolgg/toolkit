@@ -32,7 +32,7 @@ function cleanItemName(itemName: string) {
 }
 
 export function getItem(itemName: string | number | undefined): Item | null {
-	if (!itemName) return null;
+	if (itemName === undefined || !Boolean(itemName)) return null;
 	let identifier: string | number | undefined = '';
 	if (typeof itemName === 'number') {
 		identifier = itemName;
