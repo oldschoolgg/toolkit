@@ -1,11 +1,16 @@
 export type Product = {
 	id: number;
 	name: string;
-	codePrefix: 'BG';
-} & {
-	type: 'bit';
-	bit: StoreBitfield;
-};
+	codePrefix: string;
+} & (
+	| {
+			type: 'bit';
+			bit: StoreBitfield;
+	  }
+	| {
+			type: 'active';
+	  }
+);
 
 export enum ProductID {
 	SetOneNaturePermanentBankBackgrounds = 1,
@@ -14,7 +19,10 @@ export enum ProductID {
 	SetFourGirlsPermanentBankBackgrounds = 4,
 	DynamicFarmingBackgroundPermanentBankBackgrounds = 5,
 	DynamicToBBackgroundPermanentBankBackgrounds = 6,
-	DynamicCoXBackgroundPermanentBankBackgrounds = 7
+	DynamicCoXBackgroundPermanentBankBackgrounds = 7,
+	OneHourDoubleLoot = 8,
+	ThreeHourDoubleLoot = 9,
+	HalloweenItemIconPack = 10
 }
 
 export enum StoreBitfield {
@@ -24,7 +32,8 @@ export enum StoreBitfield {
 	HasSetFourGirlsPermanentBankBackgrounds = 4,
 	HasDynamicFarmingBackgroundPermanentBankBackgrounds = 5,
 	HasDynamicToBBackgroundPermanentBankBackgrounds = 6,
-	HasDynamicCoXBackgroundPermanentBankBackgrounds = 7
+	HasDynamicCoXBackgroundPermanentBankBackgrounds = 7,
+	HalloweenItemIconPack = 10
 }
 
 export const products: Product[] = [
@@ -76,5 +85,24 @@ export const products: Product[] = [
 		type: 'bit',
 		codePrefix: 'BG',
 		bit: StoreBitfield.HasDynamicCoXBackgroundPermanentBankBackgrounds
+	},
+	{
+		id: ProductID.OneHourDoubleLoot,
+		name: 'One Hour Double Loot (Single Use)',
+		type: 'active',
+		codePrefix: 'DOUBLE'
+	},
+	{
+		id: ProductID.ThreeHourDoubleLoot,
+		name: 'Three Hour Double Loot (Single Use)',
+		type: 'active',
+		codePrefix: 'DOUBLE'
+	},
+	{
+		id: ProductID.HalloweenItemIconPack,
+		name: 'Halloween Item Icon and Background Pack',
+		type: 'bit',
+		codePrefix: 'BG',
+		bit: StoreBitfield.HalloweenItemIconPack
 	}
 ];
