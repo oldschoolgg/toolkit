@@ -24,7 +24,6 @@
 	},
 	"peerDependencies": {
 		"discord.js": "^14.15.3",
-		"mahoji": "^0.0.7",
 		"oldschooljs": "^2.5.4"
 	},
 	"devDependencies": {
@@ -35,7 +34,6 @@
 		"@vitest/coverage-v8": "^1.6.0",
 		"concurrently": "^8.2.2",
 		"discord.js": "^14.15.3",
-		"mahoji": "^0.0.7",
 		"oldschooljs": "^2.5.4",
 		"rimraf": "^5.0.7",
 		"typescript": "^5.5.3",

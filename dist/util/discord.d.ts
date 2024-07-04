@@ -1,5 +1,5 @@
 import { type Client, type Guild } from 'discord.js';
-import type { MahojiClient } from 'mahoji';
+import type { MahojiClient } from '../lib/MahojiClient/Mahoji';
 export declare function randomSnowflake(): string;
 export declare function mentionCommand(client: Client & {
     mahojiClient: MahojiClient;

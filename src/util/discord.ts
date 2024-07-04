@@ -1,5 +1,5 @@
 import { type Client, type Guild, PermissionsBitField } from 'discord.js';
-import type { MahojiClient } from 'mahoji';
+import type { MahojiClient } from '../lib/MahojiClient/Mahoji';
 
 const discordEpoch = 1_420_070_400_000;
 
@@ -25,7 +25,7 @@ export function mentionCommand(
 	subCommand?: string,
 	subSubCommand?: string
 ) {
-	const command = client.mahojiClient.commands.values.find(i => i.name === name);
+	const command = client.mahojiClient.commands.get(name);
 	if (!command) {
 		throw new Error(`Command ${name} not found`);
 	}

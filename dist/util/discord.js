@@ -18,7 +18,7 @@ function randomSnowflake() {
     return snowflakeBigInt.toString();
 }
 function mentionCommand(client, name, subCommand, subSubCommand) {
-    const command = client.mahojiClient.commands.values.find(i => i.name === name);
+    const command = client.mahojiClient.commands.get(name);
     if (!command) {
         throw new Error(`Command ${name} not found`);
     }
