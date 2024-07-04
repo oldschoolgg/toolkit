@@ -45,7 +45,7 @@ export declare class TSRedis {
     get(key: string): Promise<string | null>;
     private getUserHash;
     setUser(userID: string, changes: Partial<RedisUser>): Promise<number>;
-    getUser(userID: string): Promise<0 | Record<string, string>>;
+    getUser(userID: string): Promise<Partial<RedisUser>>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

@@ -76,9 +76,8 @@ export class TSRedis {
 		return this.redis.hset(this.getUserHash(userID), changes);
 	}
 
-	async getUser(userID: string) {
+	async getUser(userID: string): Promise<Partial<RedisUser>> {
 		const user = await this.redis.hgetall(this.getUserHash(userID));
-		if (!user) return 0;
 		return user;
 	}
 }

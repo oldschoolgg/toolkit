@@ -67,8 +67,6 @@ class TSRedis {
     }
     async getUser(userID) {
         const user = await this.redis.hgetall(this.getUserHash(userID));
-        if (!user)
-            return 0;
         return user;
     }
 }
