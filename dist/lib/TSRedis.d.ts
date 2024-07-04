@@ -30,6 +30,10 @@ export declare class TSRedis {
     constructor(redis: Redis);
     subscribe(channel: Channel, callback: (message: Message) => void): void;
     publish(message: Message): void;
+    set(key: string, value: string): Promise<"OK">;
+    get(key: string): Promise<string | null>;
+    setUsername(userID: string, username: string): Promise<"OK">;
+    getUsername(userID: string): Promise<string | null>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

@@ -51,4 +51,20 @@ export class TSRedis {
 		const parsedMessage = messageSchema.parse(message);
 		this.redis.publish(parsedMessage.channel, JSON.stringify(parsedMessage));
 	}
+
+	async set(key: string, value: string) {
+		return this.redis.set(key, value);
+	}
+
+	async get(key: string) {
+		return this.redis.get(key);
+	}
+
+	async setUsername(userID: string, username: string) {
+		return this.set(`username.${userID}`, username);
+	}
+
+	async getUsername(userID: string) {
+		return this.get(`username.${userID}`);
+	}
 }
