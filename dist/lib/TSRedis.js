@@ -2,19 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
 const zod_1 = require("zod");
-const messageBaseSchema = zod_1.z.object({
-    id: zod_1.z.string(),
+const patronUpdateMessageSchema = zod_1.z.object({
+    type: zod_1.z.literal('text'),
+    text: zod_1.z.string(),
     channel: zod_1.z.enum(['main'])
 });
-const textMessageSchema = messageBaseSchema.extend({
-    type: zod_1.z.literal('text'),
-    text: zod_1.z.string()
+const pingMessageSchema = zod_1.z.object({
+    type: zod_1.z.literal('ping'),
+    channel: zod_1.z.enum(['main'])
 });
-const imageMessageSchema = messageBaseSchema.extend({
-    type: zod_1.z.literal('image'),
-    url: zod_1.z.string()
-});
-const messageSchema = zod_1.z.union([textMessageSchema, imageMessageSchema]);
+const messageSchema = zod_1.z.union([patronUpdateMessageSchema, pingMessageSchema]);
 class TSRedis {
     constructor(redis) {
         Object.defineProperty(this, "redis", {
@@ -53,20 +50,4 @@ class TSRedis {
     }
 }
 exports.TSRedis = TSRedis;
-// // Usage Example
-// const redis = new Redis();
-// const typesafeRedis = new TypesafeRedis(redis);
-// typesafeRedis.subscribe('my-channel', msg => {
-// 	if (msg.type === 'text') {
-// 		console.log('Received text message:', msg.text);
-// 	} else if (msg.type === 'image') {
-// 		console.log('Received image message:', msg.url);
-// 	}
-// });
-// typesafeRedis.publish({
-//   id: '1',
-//   channel: 'my-channel',
-//   type: 'text',
-//   text: 'Hello, World!'
-// });
 //# sourceMappingURL=TSRedis.js.map

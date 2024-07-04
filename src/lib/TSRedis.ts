@@ -1,22 +1,18 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
 
-const messageBaseSchema = z.object({
-	id: z.string(),
+const patronUpdateMessageSchema = z.object({
+	type: z.literal('text'),
+	text: z.string(),
 	channel: z.enum(['main'])
 });
 
-const textMessageSchema = messageBaseSchema.extend({
-	type: z.literal('text'),
-	text: z.string()
+const pingMessageSchema = z.object({
+	type: z.literal('ping'),
+	channel: z.enum(['main'])
 });
 
-const imageMessageSchema = messageBaseSchema.extend({
-	type: z.literal('image'),
-	url: z.string()
-});
-
-const messageSchema = z.union([textMessageSchema, imageMessageSchema]);
+const messageSchema = z.union([patronUpdateMessageSchema, pingMessageSchema]);
 
 type Message = z.infer<typeof messageSchema>;
 
@@ -54,22 +50,3 @@ export class TSRedis {
 		this.redis.publish(parsedMessage.channel, JSON.stringify(parsedMessage));
 	}
 }
-
-// // Usage Example
-// const redis = new Redis();
-// const typesafeRedis = new TypesafeRedis(redis);
-
-// typesafeRedis.subscribe('my-channel', msg => {
-// 	if (msg.type === 'text') {
-// 		console.log('Received text message:', msg.text);
-// 	} else if (msg.type === 'image') {
-// 		console.log('Received image message:', msg.url);
-// 	}
-// });
-
-// typesafeRedis.publish({
-//   id: '1',
-//   channel: 'my-channel',
-//   type: 'text',
-//   text: 'Hello, World!'
-// });

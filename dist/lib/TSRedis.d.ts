@@ -1,36 +1,25 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
-declare const messageSchema: z.ZodUnion<[z.ZodObject<z.objectUtil.extendShape<{
-    id: z.ZodString;
-    channel: z.ZodEnum<["main"]>;
-}, {
+declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"text">;
     text: z.ZodString;
-}>, "strip", z.ZodTypeAny, {
-    type: "text";
-    id: string;
-    channel: "main";
-    text: string;
-}, {
-    type: "text";
-    id: string;
-    channel: "main";
-    text: string;
-}>, z.ZodObject<z.objectUtil.extendShape<{
-    id: z.ZodString;
     channel: z.ZodEnum<["main"]>;
-}, {
-    type: z.ZodLiteral<"image">;
-    url: z.ZodString;
-}>, "strip", z.ZodTypeAny, {
-    type: "image";
-    id: string;
-    url: string;
+}, "strip", z.ZodTypeAny, {
+    type: "text";
+    text: string;
     channel: "main";
 }, {
-    type: "image";
-    id: string;
-    url: string;
+    type: "text";
+    text: string;
+    channel: "main";
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"ping">;
+    channel: z.ZodEnum<["main"]>;
+}, "strip", z.ZodTypeAny, {
+    type: "ping";
+    channel: "main";
+}, {
+    type: "ping";
     channel: "main";
 }>]>;
 type Message = z.infer<typeof messageSchema>;

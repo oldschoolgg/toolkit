@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PerkTier = void 0;
 exports.stripEmojis = stripEmojis;
 exports.cleanString = cleanString;
 exports.stringMatches = stringMatches;
@@ -93,4 +94,35 @@ function splitMessage(text, { maxLength = 2000, char = '\n', prepend = '', appen
     }
     return messages.concat(msg).filter(m => m);
 }
+var PerkTier;
+(function (PerkTier) {
+    /**
+     * Boosters
+     */
+    PerkTier[PerkTier["One"] = 1] = "One";
+    /**
+     * Tier 1 Patron
+     */
+    PerkTier[PerkTier["Two"] = 2] = "Two";
+    /**
+     * Tier 2 Patron, Contributors, Mods
+     */
+    PerkTier[PerkTier["Three"] = 3] = "Three";
+    /**
+     * Tier 3 Patron
+     */
+    PerkTier[PerkTier["Four"] = 4] = "Four";
+    /**
+     * Tier 4 Patron
+     */
+    PerkTier[PerkTier["Five"] = 5] = "Five";
+    /**
+     * Tier 5 Patron
+     */
+    PerkTier[PerkTier["Six"] = 6] = "Six";
+    /**
+     * Tier 6 Patron
+     */
+    PerkTier[PerkTier["Seven"] = 7] = "Seven";
+})(PerkTier || (exports.PerkTier = PerkTier = {}));
 //# sourceMappingURL=misc.js.map
