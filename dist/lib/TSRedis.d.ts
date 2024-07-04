@@ -1,5 +1,6 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
+import type { PerkTier } from '../util/misc';
 declare const channels: z.ZodEnum<["main"]>;
 declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"text">;
@@ -35,6 +36,9 @@ export declare class TSRedis {
     private getUserHash;
     setUsername(userID: string, username: string): Promise<number>;
     getUsername(userID: string): Promise<string | null>;
+    private PERK_TIER_KEY;
+    setPerkTier(userID: string, perkTier: PerkTier): Promise<number>;
+    getPerkTier(userID: string): Promise<number>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

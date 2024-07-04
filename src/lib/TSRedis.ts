@@ -1,5 +1,6 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
+import type { PerkTier } from '../util/misc';
 
 const channels = z.enum(['main']);
 
@@ -72,5 +73,18 @@ export class TSRedis {
 
 	async getUsername(userID: string) {
 		return this.redis.hget(this.getUserHash(userID), 'username');
+	}
+
+	private PERK_TIER_KEY = 'perk_tier';
+	async setPerkTier(userID: string, perkTier: PerkTier) {
+		return this.redis.hset(this.getUserHash(userID), {
+			[this.PERK_TIER_KEY]: perkTier
+		});
+	}
+
+	async getPerkTier(userID: string) {
+		const perkTier = await this.redis.hget(this.getUserHash(userID), this.PERK_TIER_KEY);
+		if (!perkTier) return 0;
+		return Number.parseInt(perkTier);
 	}
 }

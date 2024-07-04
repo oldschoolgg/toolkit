@@ -21,6 +21,12 @@ class TSRedis {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "PERK_TIER_KEY", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'perk_tier'
+        });
         this.redis = redis;
     }
     subscribe(channel, callback) {
@@ -65,6 +71,17 @@ class TSRedis {
     }
     async getUsername(userID) {
         return this.redis.hget(this.getUserHash(userID), 'username');
+    }
+    async setPerkTier(userID, perkTier) {
+        return this.redis.hset(this.getUserHash(userID), {
+            [this.PERK_TIER_KEY]: perkTier
+        });
+    }
+    async getPerkTier(userID) {
+        const perkTier = await this.redis.hget(this.getUserHash(userID), this.PERK_TIER_KEY);
+        if (!perkTier)
+            return 0;
+        return Number.parseInt(perkTier);
     }
 }
 exports.TSRedis = TSRedis;
