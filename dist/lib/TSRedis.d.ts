@@ -8,12 +8,12 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     channel: z.ZodEnum<["main"]>;
 }, "strip", z.ZodTypeAny, {
     type: "text";
-    text: string;
     channel: "main";
+    text: string;
 }, {
     type: "text";
-    text: string;
     channel: "main";
+    text: string;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"ping">;
     channel: z.ZodEnum<["main"]>;

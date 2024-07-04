@@ -28,4 +28,6 @@ __exportStar(require("./util/runescape"), exports);
 var deepmerge_1 = require("deepmerge");
 Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
 __exportStar(require("./lib/TSRedis"), exports);
+__exportStar(require("./lib/MahojiClient/Mahoji"), exports);
+__exportStar(require("./lib/MahojiClient/mahojiTypes"), exports);
 //# sourceMappingURL=index.js.map

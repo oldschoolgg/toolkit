@@ -57,7 +57,7 @@ export declare class MahojiClient {
     handlers: Handlers;
     djsClient: Client;
     constructor(options: MahojiOptions);
-    parseInteraction(interaction: Interaction): Promise<void | import("discord.js").InteractionResponse<boolean> | import("discord.js").Message<boolean> | {
+    parseInteraction(interaction: Interaction): Promise<void | import("discord.js").Message<boolean> | import("discord.js").InteractionResponse<boolean> | {
         error: Error;
     } | null>;
 }
