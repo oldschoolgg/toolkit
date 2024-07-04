@@ -53,8 +53,8 @@ mathExpressionParser.addToken([
 export function evalMathExpression(str: string): number | null {
 	try {
 		const result = mathExpressionParser.eval(str);
-		const number = parseInt(result);
-		if (isNaN(number) || !isFinite(number)) return null;
+		const number = Number.parseInt(result);
+		if (Number.isNaN(number) || !Number.isFinite(number)) return null;
 		return number;
 	} catch {
 		return null;

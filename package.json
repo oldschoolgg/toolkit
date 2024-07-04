@@ -4,40 +4,42 @@
 	"description": "Oldschoolgg Toolkit",
 	"main": "dist/index.js",
 	"scripts": {
-		"lint": "concurrently \"prettier *.{js,md} --write\" \"eslint *.ts \"{src,tests}/**/*.ts\" --fix\"",
+		"lint": "biome check --write --unsafe --diagnostic-level=error",
+		"test:lint": "biome check --diagnostic-level=error",
 		"build:tsc": "tsc -p src",
 		"build": "yarn wipedist && yarn build:tsc",
 		"wipedist": "rimraf \"dist/\"",
 		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\"",
-		"test:lint": "eslint \"{src,tests}/**/*.ts\"",
 		"test:unit": "vitest run --coverage",
 		"dev": "yarn wipedist && tsc -w -p src",
 		"test:watch": "vitest --coverage"
 	},
 	"dependencies": {
-		"deepmerge": "^4.3.1",
-		"e": "^0.2.3",
+		"deep-merge": "^1.0.0",
+		"e": "^0.2.33",
 		"emoji-regex": "^10.2.1",
-		"math-expression-evaluator": "^1.3.14"
+		"ioredis": "^5.4.1",
+		"math-expression-evaluator": "^1.3.14",
+		"zod": "^3.23.8"
 	},
 	"peerDependencies": {
-		"discord.js": "^14.6.0",
-		"mahoji": "^0.0.62",
-		"oldschooljs": "^2.2.5"
+		"discord.js": "^14.15.3",
+		"mahoji": "^0.0.7",
+		"oldschooljs": "^2.5.4"
 	},
 	"devDependencies": {
-		"@oldschoolgg/eslint-config": "^2.0.13",
+		"@biomejs/biome": "^1.8.3",
 		"@oldschoolgg/ts-config": "^0.0.1",
 		"@types/math-expression-evaluator": "^1.2.2",
-		"@types/node": "^14.18.12",
-		"@vitest/coverage-c8": "^0.28.4",
-		"concurrently": "^6.5.1",
-		"discord.js": "^14.9.0",
-		"mahoji": "^0.0.62",
-		"oldschooljs": "^2.2.5",
-		"rimraf": "^3.0.2",
-		"typescript": "5.0.2",
-		"vitest": "^0.28.3"
+		"@types/node": "^20.14.9",
+		"@vitest/coverage-v8": "^1.6.0",
+		"concurrently": "^8.2.2",
+		"discord.js": "^14.15.3",
+		"mahoji": "^0.0.7",
+		"oldschooljs": "^2.5.4",
+		"rimraf": "^5.0.7",
+		"typescript": "^5.5.3",
+		"vitest": "^1.6.0"
 	},
 	"engines": {
 		"node": ">=18.12.0"

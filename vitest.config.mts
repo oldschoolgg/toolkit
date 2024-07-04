@@ -5,7 +5,7 @@ export default defineConfig({
 		name: 'Oldschoolgg Toolkit',
 		include: ['tests/*.test.ts'],
 		coverage: {
-			provider: 'c8',
+			provider: 'v8',
 			reporter: ['text']
 		}
 	}

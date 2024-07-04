@@ -1,5 +1,7 @@
 *.log
-dist/
+dist/.tsbuildinfo
+*.d.ts.map
+*.map
 .env
 
 npm-debug.log*

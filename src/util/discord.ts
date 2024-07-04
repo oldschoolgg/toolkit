@@ -1,4 +1,4 @@
-import { Client, Guild, PermissionsBitField } from 'discord.js';
+import { type Client, type Guild, PermissionsBitField } from 'discord.js';
 import type { MahojiClient } from 'mahoji';
 
 const discordEpoch = 1_420_070_400_000;

@@ -1,6 +1,6 @@
 import deepMerge from 'deepmerge';
-import { Bank, Items } from 'oldschooljs';
-import { Item } from 'oldschooljs/dist/meta/types';
+import { type Bank, Items } from 'oldschooljs';
+import type { Item } from 'oldschooljs/dist/meta/types';
 
 export function modifyItem(itemName: string | number, data: Partial<Item>) {
 	if (data.id) throw new Error('Cannot change item ID');
@@ -32,13 +32,13 @@ function cleanItemName(itemName: string) {
 }
 
 export function getItem(itemName: string | number | undefined): Item | null {
-	if (itemName === undefined || !Boolean(itemName)) return null;
+	if (itemName === undefined || !itemName) return null;
 	let identifier: string | number | undefined = '';
 	if (typeof itemName === 'number') {
 		identifier = itemName;
 	} else {
 		const parsed = Number(itemName);
-		identifier = isNaN(parsed) ? cleanItemName(itemName) : parsed;
+		identifier = Number.isNaN(parsed) ? cleanItemName(itemName) : parsed;
 	}
 	const item = Items.get(identifier);
 	return item ?? null;

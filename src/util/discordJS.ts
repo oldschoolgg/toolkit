@@ -1,4 +1,4 @@
-import { Channel, DMChannel, GuildTextBasedChannel, TextChannel, User } from 'discord.js';
+import { type Channel, DMChannel, type GuildTextBasedChannel, TextChannel, type User } from 'discord.js';
 
 /* c8 ignore start */
 /**
