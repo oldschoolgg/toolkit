@@ -1,6 +1,5 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
-import type { PerkTier } from '../util/misc';
 declare const channels: z.ZodEnum<["main"]>;
 declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"text">;
@@ -26,6 +25,17 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
 }>]>;
 type Message = z.infer<typeof messageSchema>;
 type Channel = z.infer<typeof channels>;
+declare const userSchema: z.ZodObject<{
+    username: z.ZodString;
+    perk_tier: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    username: string;
+    perk_tier: number;
+}, {
+    username: string;
+    perk_tier: number;
+}>;
+type RedisUser = z.infer<typeof userSchema>;
 export declare class TSRedis {
     private redis;
     constructor(redis: Redis);
@@ -34,11 +44,8 @@ export declare class TSRedis {
     set(key: string, value: string): Promise<"OK">;
     get(key: string): Promise<string | null>;
     private getUserHash;
-    setUsername(userID: string, username: string): Promise<number>;
-    getUsername(userID: string): Promise<string | null>;
-    private PERK_TIER_KEY;
-    setPerkTier(userID: string, perkTier: PerkTier): Promise<number>;
-    getPerkTier(userID: string): Promise<number>;
+    setUser(userID: string, changes: Partial<RedisUser>): Promise<number>;
+    getUser(userID: string): Promise<0 | Record<string, string>>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

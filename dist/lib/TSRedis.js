@@ -13,6 +13,10 @@ const pingMessageSchema = zod_1.z.object({
     channel: channels
 });
 const messageSchema = zod_1.z.union([patronUpdateMessageSchema, pingMessageSchema]);
+const userSchema = zod_1.z.object({
+    username: zod_1.z.string(),
+    perk_tier: zod_1.z.number()
+});
 class TSRedis {
     constructor(redis) {
         Object.defineProperty(this, "redis", {
@@ -20,12 +24,6 @@ class TSRedis {
             configurable: true,
             writable: true,
             value: void 0
-        });
-        Object.defineProperty(this, "PERK_TIER_KEY", {
-            enumerable: true,
-            configurable: true,
-            writable: true,
-            value: 'perk_tier'
         });
         this.redis = redis;
     }
@@ -64,24 +62,14 @@ class TSRedis {
     getUserHash(userID) {
         return `user.${userID}`;
     }
-    async setUsername(userID, username) {
-        return this.redis.hset(this.getUserHash(userID), {
-            username
-        });
+    async setUser(userID, changes) {
+        return this.redis.hset(this.getUserHash(userID), changes);
     }
-    async getUsername(userID) {
-        return this.redis.hget(this.getUserHash(userID), 'username');
-    }
-    async setPerkTier(userID, perkTier) {
-        return this.redis.hset(this.getUserHash(userID), {
-            [this.PERK_TIER_KEY]: perkTier
-        });
-    }
-    async getPerkTier(userID) {
-        const perkTier = await this.redis.hget(this.getUserHash(userID), this.PERK_TIER_KEY);
-        if (!perkTier)
+    async getUser(userID) {
+        const user = await this.redis.hgetall(this.getUserHash(userID));
+        if (!user)
             return 0;
-        return Number.parseInt(perkTier);
+        return user;
     }
 }
 exports.TSRedis = TSRedis;

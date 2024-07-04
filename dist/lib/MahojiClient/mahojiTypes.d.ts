@@ -30,7 +30,7 @@ export interface MahojiUserOption {
     user: User;
     member?: GuildMember | APIInteractionDataResolvedGuildMember;
 }
-type MahojiCommandOption = number | string | MahojiUserOption | Channel | APIInteractionDataResolvedChannel | Role | APIRole | boolean;
+export type MahojiCommandOption = number | string | MahojiUserOption | Channel | APIInteractionDataResolvedChannel | Role | APIRole | boolean;
 export interface CommandOptions {
     [key: string]: MahojiCommandOption | CommandOptions;
 }
@@ -45,5 +45,4 @@ export interface CommandRunOptions<T extends CommandOptions = {}> {
     userID: string;
     djsClient: Client;
 }
-export {};
 //# sourceMappingURL=mahojiTypes.d.ts.map

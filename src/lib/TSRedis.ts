@@ -1,6 +1,5 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
-import type { PerkTier } from '../util/misc';
 
 const channels = z.enum(['main']);
 
@@ -19,6 +18,14 @@ const messageSchema = z.union([patronUpdateMessageSchema, pingMessageSchema]);
 
 type Message = z.infer<typeof messageSchema>;
 type Channel = z.infer<typeof channels>;
+
+const userSchema = z.object({
+	username: z.string(),
+	perk_tier: z.number()
+});
+
+type RedisUser = z.infer<typeof userSchema>;
+
 export class TSRedis {
 	private redis: Redis;
 
@@ -65,26 +72,13 @@ export class TSRedis {
 		return `user.${userID}`;
 	}
 
-	async setUsername(userID: string, username: string) {
-		return this.redis.hset(this.getUserHash(userID), {
-			username
-		});
+	async setUser(userID: string, changes: Partial<RedisUser>) {
+		return this.redis.hset(this.getUserHash(userID), changes);
 	}
 
-	async getUsername(userID: string) {
-		return this.redis.hget(this.getUserHash(userID), 'username');
-	}
-
-	private PERK_TIER_KEY = 'perk_tier';
-	async setPerkTier(userID: string, perkTier: PerkTier) {
-		return this.redis.hset(this.getUserHash(userID), {
-			[this.PERK_TIER_KEY]: perkTier
-		});
-	}
-
-	async getPerkTier(userID: string) {
-		const perkTier = await this.redis.hget(this.getUserHash(userID), this.PERK_TIER_KEY);
-		if (!perkTier) return 0;
-		return Number.parseInt(perkTier);
+	async getUser(userID: string) {
+		const user = await this.redis.hgetall(this.getUserHash(userID));
+		if (!user) return 0;
+		return user;
 	}
 }

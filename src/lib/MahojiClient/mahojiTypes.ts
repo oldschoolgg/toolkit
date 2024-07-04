@@ -58,7 +58,7 @@ export interface MahojiUserOption {
 	member?: GuildMember | APIInteractionDataResolvedGuildMember;
 }
 
-type MahojiCommandOption =
+export type MahojiCommandOption =
 	| number
 	| string
 	| MahojiUserOption
