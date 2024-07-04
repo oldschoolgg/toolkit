@@ -1,5 +1,6 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
+declare const channels: z.ZodEnum<["main"]>;
 declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"text">;
     text: z.ZodString;
@@ -23,10 +24,11 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     channel: "main";
 }>]>;
 type Message = z.infer<typeof messageSchema>;
+type Channel = z.infer<typeof channels>;
 export declare class TSRedis {
     private redis;
     constructor(redis: Redis);
-    subscribe(channel: string, callback: (message: Message) => void): void;
+    subscribe(channel: Channel, callback: (message: Message) => void): void;
     publish(message: Message): void;
 }
 export {};

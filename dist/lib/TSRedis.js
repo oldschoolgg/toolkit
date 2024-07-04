@@ -2,14 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
 const zod_1 = require("zod");
+const channels = zod_1.z.enum(['main']);
 const patronUpdateMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('text'),
     text: zod_1.z.string(),
-    channel: zod_1.z.enum(['main'])
+    channel: channels
 });
 const pingMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('ping'),
-    channel: zod_1.z.enum(['main'])
+    channel: channels
 });
 const messageSchema = zod_1.z.union([patronUpdateMessageSchema, pingMessageSchema]);
 class TSRedis {

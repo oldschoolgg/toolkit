@@ -1,21 +1,23 @@
 import type Redis from 'ioredis';
 import { z } from 'zod';
 
+const channels = z.enum(['main']);
+
 const patronUpdateMessageSchema = z.object({
 	type: z.literal('text'),
 	text: z.string(),
-	channel: z.enum(['main'])
+	channel: channels
 });
 
 const pingMessageSchema = z.object({
 	type: z.literal('ping'),
-	channel: z.enum(['main'])
+	channel: channels
 });
 
 const messageSchema = z.union([patronUpdateMessageSchema, pingMessageSchema]);
 
 type Message = z.infer<typeof messageSchema>;
-
+type Channel = z.infer<typeof channels>;
 export class TSRedis {
 	private redis: Redis;
 
@@ -23,7 +25,7 @@ export class TSRedis {
 		this.redis = redis;
 	}
 
-	subscribe(channel: string, callback: (message: Message) => void) {
+	subscribe(channel: Channel, callback: (message: Message) => void) {
 		this.redis.subscribe(channel, (err, count) => {
 			if (err) {
 				console.error('Failed to subscribe: ', err);

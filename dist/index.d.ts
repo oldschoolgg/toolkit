@@ -6,4 +6,5 @@ export * from './util/misc';
 export * from './util/osjs';
 export * from './util/runescape';
 export { default as deepMerge } from 'deepmerge';
+export * from './lib/TSRedis';
 //# sourceMappingURL=index.d.ts.map

@@ -27,4 +27,5 @@ __exportStar(require("./util/osjs"), exports);
 __exportStar(require("./util/runescape"), exports);
 var deepmerge_1 = require("deepmerge");
 Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
+__exportStar(require("./lib/TSRedis"), exports);
 //# sourceMappingURL=index.js.map
