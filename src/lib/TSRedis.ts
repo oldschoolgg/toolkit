@@ -60,11 +60,17 @@ export class TSRedis {
 		return this.redis.get(key);
 	}
 
+	private getUserHash(userID: string) {
+		return `user.${userID}`;
+	}
+
 	async setUsername(userID: string, username: string) {
-		return this.set(`username.${userID}`, username);
+		return this.redis.hset(this.getUserHash(userID), {
+			username
+		});
 	}
 
 	async getUsername(userID: string) {
-		return this.get(`username.${userID}`);
+		return this.redis.hget(this.getUserHash(userID), 'username');
 	}
 }

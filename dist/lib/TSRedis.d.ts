@@ -32,7 +32,8 @@ export declare class TSRedis {
     publish(message: Message): void;
     set(key: string, value: string): Promise<"OK">;
     get(key: string): Promise<string | null>;
-    setUsername(userID: string, username: string): Promise<"OK">;
+    private getUserHash;
+    setUsername(userID: string, username: string): Promise<number>;
     getUsername(userID: string): Promise<string | null>;
 }
 export {};

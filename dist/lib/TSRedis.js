@@ -55,11 +55,16 @@ class TSRedis {
     async get(key) {
         return this.redis.get(key);
     }
+    getUserHash(userID) {
+        return `user.${userID}`;
+    }
     async setUsername(userID, username) {
-        return this.set(`username.${userID}`, username);
+        return this.redis.hset(this.getUserHash(userID), {
+            username
+        });
     }
     async getUsername(userID) {
-        return this.get(`username.${userID}`);
+        return this.redis.hget(this.getUserHash(userID), 'username');
     }
 }
 exports.TSRedis = TSRedis;
