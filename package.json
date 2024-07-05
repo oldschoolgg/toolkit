@@ -4,7 +4,7 @@
 	"description": "Oldschoolgg Toolkit",
 	"main": "dist/index.js",
 	"scripts": {
-		"lint": "biome check --write --unsafe --diagnostic-level=error",
+		"lint": "biome check --write --diagnostic-level=error",
 		"test:lint": "biome check --diagnostic-level=error",
 		"build:tsc": "tsc -p src",
 		"build": "yarn wipedist && yarn build:tsc",
@@ -41,5 +41,6 @@
 	},
 	"engines": {
 		"node": ">=18.12.0"
-	}
+	},
+	"packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
 }

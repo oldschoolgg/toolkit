@@ -1,5 +1,4 @@
 import {
-	type APIApplicationCommandOption,
 	type APIApplicationCommandOptionChoice,
 	ApplicationCommandOptionType,
 	ApplicationCommandType,
@@ -17,14 +16,14 @@ import {
 } from 'discord.js';
 import type { CommandOption, CommandOptions, CommandRunOptions } from './mahojiTypes';
 
-export function convertCommandOptionToAPIOption(option: CommandOption): APIApplicationCommandOption {
+export function convertCommandOptionToAPIOption(option: CommandOption): any {
 	switch (option.type) {
 		case ApplicationCommandOptionType.Number:
 		case ApplicationCommandOptionType.Integer:
 		case ApplicationCommandOptionType.String: {
 			return {
 				...option,
-				autocomplete: undefined
+				autocomplete: 'autocomplete' in option ?? false
 			};
 		}
 

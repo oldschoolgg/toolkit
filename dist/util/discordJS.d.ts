@@ -1,4 +1,4 @@
-import { type Channel, type GuildTextBasedChannel, TextChannel, type User } from 'discord.js';
+import type { Channel, GuildTextBasedChannel, TextChannel, User } from 'discord.js';
 /**
  * Checks if the bot can send a message to a channel object.
  * @param channel The channel to check if the bot can send a message to.

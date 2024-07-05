@@ -1,6 +1,6 @@
-import { type APIApplicationCommandOption, type APIApplicationCommandOptionChoice, type ChatInputCommandInteraction, type Client, type CommandInteractionOption, type GuildMember, type Interaction, type InteractionReplyOptions, PermissionFlagsBits, type RESTPostAPIApplicationGuildCommandsJSONBody, type Snowflake, type User } from 'discord.js';
+import { type APIApplicationCommandOptionChoice, type ChatInputCommandInteraction, type Client, type CommandInteractionOption, type GuildMember, type Interaction, type InteractionReplyOptions, PermissionFlagsBits, type RESTPostAPIApplicationGuildCommandsJSONBody, type Snowflake, type User } from 'discord.js';
 import type { CommandOption, CommandOptions, CommandRunOptions } from './mahojiTypes';
-export declare function convertCommandOptionToAPIOption(option: CommandOption): APIApplicationCommandOption;
+export declare function convertCommandOptionToAPIOption(option: CommandOption): any;
 export declare function convertCommandToAPICommand(cmd: ICommand): RESTPostAPIApplicationGuildCommandsJSONBody & {
     description: string;
 };

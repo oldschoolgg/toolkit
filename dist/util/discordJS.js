@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.channelIsSendable = channelIsSendable;
 exports.isGuildChannel = isGuildChannel;
 exports.discrimName = discrimName;
-const discord_js_1 = require("discord.js");
 /* c8 ignore start */
 /**
  * Checks if the bot can send a message to a channel object.
@@ -14,16 +13,11 @@ function channelIsSendable(channel) {
         return false;
     if (!channel.isTextBased())
         return false;
-    if (!('guild' in channel))
+    if (channel.isDMBased())
         return true;
     const permissions = channel.permissionsFor(channel.client.user);
-    if (!permissions)
-        return false;
-    const canSend = permissions.has('ViewChannel') && permissions.has('SendMessages');
-    if (!(channel instanceof discord_js_1.DMChannel) && !(channel instanceof discord_js_1.TextChannel) && canSend) {
-        return false;
-    }
-    return true;
+    // biome-ignore lint/complexity/useOptionalChain: <explanation>
+    return permissions !== null && permissions.has('ViewChannel') && permissions.has('SendMessages');
 }
 function isGuildChannel(channel) {
     return channel !== undefined && !channel.isDMBased() && Boolean(channel.guild);
