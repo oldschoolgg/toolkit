@@ -17,7 +17,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deepMerge = void 0;
+exports.deepMerge = exports.Stopwatch = void 0;
 __exportStar(require("./lib/SimpleTable"), exports);
 __exportStar(require("./lib/Store"), exports);
 __exportStar(require("./util/discord"), exports);
@@ -25,8 +25,6 @@ __exportStar(require("./util/discordJS"), exports);
 __exportStar(require("./util/misc"), exports);
 __exportStar(require("./util/osjs"), exports);
 __exportStar(require("./util/runescape"), exports);
-var deepmerge_1 = require("deepmerge");
-Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
 __exportStar(require("./lib/TSRedis"), exports);
 __exportStar(require("./lib/MahojiClient/Mahoji"), exports);
 __exportStar(require("./lib/MahojiClient/mahojiTypes"), exports);
@@ -36,4 +34,10 @@ __exportStar(require("./util/chance"), exports);
 __exportStar(require("./util/datetime"), exports);
 __exportStar(require("./util/node"), exports);
 __exportStar(require("./util/string"), exports);
+// Structures
+var Stopwatch_1 = require("./lib/Stopwatch");
+Object.defineProperty(exports, "Stopwatch", { enumerable: true, get: function () { return Stopwatch_1.Stopwatch; } });
+// External
+var deepmerge_1 = require("deepmerge");
+Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
 //# sourceMappingURL=index.js.map
