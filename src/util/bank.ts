@@ -1,5 +1,5 @@
 import { Time, calcWhatPercent, increaseNumByPercent } from 'e';
-import { Bank } from 'oldschooljs';
+import { Bank, Items } from 'oldschooljs';
 import type { ItemBank } from 'oldschooljs/dist/meta/types';
 
 export function increaseBankQuantitesByPercent(bank: Bank, percent: number, whitelist: number[] | null = null) {
@@ -64,4 +64,12 @@ export function averageBank(bank: Bank, kc: number) {
 		newBank.add(item.id, Math.floor(qty / kc));
 	}
 	return newBank;
+}
+
+export function generateRandomBank(size = 100, amountPerItem = 10000) {
+	const bank = new Bank();
+	for (let i = 0; i < size; i++) {
+		bank.add(Items.random().id, amountPerItem);
+	}
+	return bank;
 }

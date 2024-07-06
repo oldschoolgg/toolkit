@@ -6,6 +6,7 @@ exports.calcDropRatesFromBank = calcDropRatesFromBank;
 exports.calcDropRatesFromBankWithoutUniques = calcDropRatesFromBankWithoutUniques;
 exports.addBanks = addBanks;
 exports.averageBank = averageBank;
+exports.generateRandomBank = generateRandomBank;
 const e_1 = require("e");
 const oldschooljs_1 = require("oldschooljs");
 function increaseBankQuantitesByPercent(bank, percent, whitelist = null) {
@@ -64,5 +65,12 @@ function averageBank(bank, kc) {
         newBank.add(item.id, Math.floor(qty / kc));
     }
     return newBank;
+}
+function generateRandomBank(size = 100, amountPerItem = 10000) {
+    const bank = new oldschooljs_1.Bank();
+    for (let i = 0; i < size; i++) {
+        bank.add(oldschooljs_1.Items.random().id, amountPerItem);
+    }
+    return bank;
 }
 //# sourceMappingURL=bank.js.map

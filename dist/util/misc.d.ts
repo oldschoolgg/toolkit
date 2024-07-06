@@ -1,3 +1,4 @@
+import type { CommandOption } from '../lib/MahojiClient/mahojiTypes';
 export declare function stripEmojis(str: string): string;
 export declare function cleanString(str: string): string;
 export declare function stringMatches(str?: string | number, str2?: string | number): boolean;
@@ -51,4 +52,7 @@ export declare function getInterval(intervalHours: number): {
     end: Date;
     nextResetStr: string;
 };
+type CommandInput = Record<string, any>;
+export declare function generateCommandInputs(options: readonly CommandOption[]): Promise<CommandInput[]>;
+export {};
 //# sourceMappingURL=misc.d.ts.map

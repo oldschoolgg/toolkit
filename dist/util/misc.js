@@ -14,8 +14,10 @@ exports.exponentialPercentScale = exponentialPercentScale;
 exports.normal = normal;
 exports.dateFm = dateFm;
 exports.getInterval = getInterval;
+exports.generateCommandInputs = generateCommandInputs;
 const discord_js_1 = require("discord.js");
 const e_1 = require("e");
+const discord_1 = require("./discord");
 const emojiRegex = require('emoji-regex');
 const rawEmojiRegex = emojiRegex();
 function stripEmojis(str) {
@@ -159,5 +161,80 @@ function getInterval(intervalHours) {
         end: endInterval,
         nextResetStr: dateFm(endInterval)
     };
+}
+async function generateCommandInputs(options) {
+    const results = [];
+    const allPossibleOptions = {};
+    for (const option of options) {
+        switch (option.type) {
+            case discord_js_1.ApplicationCommandOptionType.SubcommandGroup:
+            case discord_js_1.ApplicationCommandOptionType.Subcommand:
+                if (option.options) {
+                    const subOptionsResults = await generateCommandInputs(option.options);
+                    results.push(...subOptionsResults.map(input => ({ [option.name]: input })));
+                }
+                break;
+            case discord_js_1.ApplicationCommandOptionType.String:
+                if ('autocomplete' in option && option.autocomplete) {
+                    const autoCompleteResults = await option.autocomplete('', { id: (0, discord_1.randomSnowflake)() }, {});
+                    allPossibleOptions[option.name] = (0, e_1.shuffleArr)(autoCompleteResults.map(c => c.value)).slice(0, 3);
+                }
+                else if (option.choices) {
+                    allPossibleOptions[option.name] = option.choices.map(c => c.value).slice(0, 3);
+                }
+                else if (['guild_id', 'message_id'].includes(option.name)) {
+                    allPossibleOptions[option.name] = ['157797566833098752'];
+                }
+                else {
+                    allPossibleOptions[option.name] = ['plain string'];
+                }
+                break;
+            case discord_js_1.ApplicationCommandOptionType.Integer:
+            case discord_js_1.ApplicationCommandOptionType.Number:
+                if (option.choices) {
+                    allPossibleOptions[option.name] = option.choices.map(c => c.value);
+                }
+                else {
+                    let value = (0, e_1.randInt)(1, 10);
+                    if (option.min_value && option.max_value) {
+                        value = (0, e_1.randInt)(option.min_value, option.max_value);
+                    }
+                    allPossibleOptions[option.name] = [option.min_value, value];
+                }
+                break;
+            case discord_js_1.ApplicationCommandOptionType.Boolean: {
+                allPossibleOptions[option.name] = [true, false];
+                break;
+            }
+            case discord_js_1.ApplicationCommandOptionType.User: {
+                allPossibleOptions[option.name] = [
+                    {
+                        user: {
+                            id: '425134194436341760',
+                            username: 'username',
+                            bot: false
+                        },
+                        member: undefined
+                    }
+                ];
+                break;
+            }
+            case discord_js_1.ApplicationCommandOptionType.Channel:
+            case discord_js_1.ApplicationCommandOptionType.Role:
+            case discord_js_1.ApplicationCommandOptionType.Mentionable:
+                // results.push({ ...currentPath, [option.name]: `Any ${option.type}` });
+                break;
+        }
+    }
+    const sorted = Object.values(allPossibleOptions).sort((a, b) => b.length - a.length);
+    const longestOptions = sorted[0]?.length;
+    for (let i = 0; i < longestOptions; i++) {
+        const obj = {};
+        for (const [key, val] of Object.entries(allPossibleOptions)) {
+            obj[key] = val[i] ?? (0, e_1.randArrItem)(val);
+        }
+        results.push(obj);
+    }
+    return results;
 }
 //# sourceMappingURL=misc.js.map
