@@ -507,20 +507,21 @@ __metadata:
     "@types/node": "npm:^20.14.9"
     "@vitest/coverage-v8": "npm:^1.6.0"
     concurrently: "npm:^8.2.2"
-    deepmerge: "npm:^4.3.1"
+    decimal.js: "npm:^10.4.3"
+    deepmerge: "npm:4.3.1"
     discord.js: "npm:^14.15.3"
     e: "npm:0.2.33"
     emoji-regex: "npm:^10.2.1"
     ioredis: "npm:^5.4.1"
     math-expression-evaluator: "npm:^1.3.14"
-    oldschooljs: "npm:^2.5.4"
+    oldschooljs: "npm:^2.5.6"
     rimraf: "npm:^5.0.7"
     typescript: "npm:^5.5.3"
     vitest: "npm:^1.6.0"
     zod: "npm:3.23.8"
   peerDependencies:
     discord.js: ^14.15.3
-    oldschooljs: ^2.5.4
+    oldschooljs: ^2.5.6
   languageName: unknown
   linkType: soft
 
@@ -1112,6 +1113,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"decimal.js@npm:^10.4.3":
+  version: 10.4.3
+  resolution: "decimal.js@npm:10.4.3"
+  checksum: 10c0/6d60206689ff0911f0ce968d40f163304a6c1bc739927758e6efc7921cfa630130388966f16bf6ef6b838cb33679fbe8e7a78a2f3c478afce841fd55ac8fb8ee
+  languageName: node
+  linkType: hard
+
 "deep-eql@npm:^4.1.3":
   version: 4.1.4
   resolution: "deep-eql@npm:4.1.4"
@@ -1121,7 +1129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"deepmerge@npm:^4.3.1":
+"deepmerge@npm:4.3.1":
   version: 4.3.1
   resolution: "deepmerge@npm:4.3.1"
   checksum: 10c0/e53481aaf1aa2c4082b5342be6b6d8ad9dfe387bc92ce197a66dea08bd4265904a087e75e464f14d1347cf2ac8afe1e4c16b266e0561cc5df29382d3c5f80044
@@ -1169,7 +1177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"e@npm:0.2.33, e@npm:^0.2.32":
+"e@npm:0.2.33, e@npm:^0.2.33":
   version: 0.2.33
   resolution: "e@npm:0.2.33"
   checksum: 10c0/28c12ee98d5587686765831ac71ea5676e138c43491a305c9dc28edc10efc53ac2aedec8e0266f0bcc5ff414f909e0ccf1cc37032754660f1c07d8ed2b6652d1
@@ -2044,9 +2052,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.7":
-  version: 2.6.9
-  resolution: "node-fetch@npm:2.6.9"
+"node-fetch@npm:2.6.7":
+  version: 2.6.7
+  resolution: "node-fetch@npm:2.6.7"
   dependencies:
     whatwg-url: "npm:^5.0.0"
   peerDependencies:
@@ -2054,7 +2062,7 @@ __metadata:
   peerDependenciesMeta:
     encoding:
       optional: true
-  checksum: 10c0/7a4a0e027e509b741bec4172749103f158da23187ff251cb988dd54ea7267519c3fa11838971da0f5f3c54e79da3174e7bd72aa2179c9f69887511ece16c9c0f
+  checksum: 10c0/fcae80f5ac52fbf5012f5e19df2bd3915e67d3b3ad51cb5942943df2238d32ba15890fecabd0e166876a9f98a581ab50f3f10eb942b09405c49ef8da36b826c7
   languageName: node
   linkType: hard
 
@@ -2098,14 +2106,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oldschooljs@npm:^2.5.4":
-  version: 2.5.4
-  resolution: "oldschooljs@npm:2.5.4"
+"oldschooljs@npm:^2.5.6":
+  version: 2.5.6
+  resolution: "oldschooljs@npm:2.5.6"
   dependencies:
-    deepmerge: "npm:^4.3.1"
-    e: "npm:^0.2.32"
-    node-fetch: "npm:^2.6.7"
-  checksum: 10c0/76aff957d0eb4dedf7917578c4020f6a0c5593e7102d7ebaa06e39136e3b0c45c5f7da5c8c5f1a2a562105a999eb302337884cd47d8119cb46b948f621b0e534
+    deepmerge: "npm:4.3.1"
+    e: "npm:^0.2.33"
+    node-fetch: "npm:2.6.7"
+  checksum: 10c0/602ab0dfbc2cbae1ae756f5269238cc128024b833f8d8206f75c7e1f23b3c6265997ad6733ca735c8dc54802709cc6b55aef5723cb0b4290c97eddbaca0ea3ff
   languageName: node
   linkType: hard
 
