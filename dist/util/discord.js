@@ -4,7 +4,9 @@ exports.randomSnowflake = randomSnowflake;
 exports.mentionCommand = mentionCommand;
 exports.hasBanMemberPerms = hasBanMemberPerms;
 exports.isValidDiscordSnowflake = isValidDiscordSnowflake;
+exports.makeComponents = makeComponents;
 const discord_js_1 = require("discord.js");
+const e_1 = require("e");
 const discordEpoch = 1420070400000;
 function randomSnowflake() {
     const timestamp = Date.now() - discordEpoch;
@@ -45,5 +47,8 @@ async function hasBanMemberPerms(userID, guild) {
 }
 function isValidDiscordSnowflake(snowflake) {
     return /^\d{17,19}$/.test(snowflake);
+}
+function makeComponents(components) {
+    return (0, e_1.chunk)(components, 5).map(i => ({ components: i, type: discord_js_1.ComponentType.ActionRow }));
 }
 //# sourceMappingURL=discord.js.map

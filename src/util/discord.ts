@@ -1,4 +1,13 @@
-import { type Client, type Guild, PermissionsBitField } from 'discord.js';
+import {
+	type ButtonBuilder,
+	type Client,
+	ComponentType,
+	type Guild,
+	type InteractionReplyOptions,
+	PermissionsBitField
+} from 'discord.js';
+import { chunk } from 'e';
+
 import type { MahojiClient } from '../lib/MahojiClient/Mahoji';
 
 const discordEpoch = 1_420_070_400_000;
@@ -55,4 +64,8 @@ export async function hasBanMemberPerms(userID: string, guild: Guild) {
 
 export function isValidDiscordSnowflake(snowflake: string): boolean {
 	return /^\d{17,19}$/.test(snowflake);
+}
+
+export function makeComponents(components: ButtonBuilder[]): InteractionReplyOptions['components'] {
+	return chunk(components, 5).map(i => ({ components: i, type: ComponentType.ActionRow }));
 }
