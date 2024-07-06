@@ -1,7 +1,8 @@
+import { Items } from 'oldschooljs';
+import { getItem } from 'oldschooljs/dist/util/util';
 import { expect, test } from 'vitest';
 
-import { Items } from 'oldschooljs';
-import { getItem, modifyItem } from '../src/index';
+import { modifyItem } from '../src/index';
 
 test('modifyItem', () => {
 	const item = getItem('Coal');
