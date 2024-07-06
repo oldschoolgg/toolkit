@@ -18,12 +18,14 @@ function parseSeed(str: string | number): number {
 	return hash;
 }
 
-export function seedShuffle<T>(array: readonly T[], seedString: string | number) {
+export function seedShuffle<T>(array: readonly T[], seedString: string | number): T[] {
 	const rng = prand.xoroshiro128plus(parseSeed(seedString));
 	const rand = (min: number, max: number) => {
 		return prand.unsafeUniformIntDistribution(min, max, rng);
 	};
-	fisherYates([...array], rand);
+	const copy = [...array];
+	fisherYates(copy, rand);
+	return copy;
 }
 
 export function seedShuffleMut<T>(array: T[], seedString: string | number) {

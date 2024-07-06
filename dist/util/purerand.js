@@ -28,7 +28,9 @@ function seedShuffle(array, seedString) {
     const rand = (min, max) => {
         return pure_rand_1.default.unsafeUniformIntDistribution(min, max, rng);
     };
-    fisherYates([...array], rand);
+    const copy = [...array];
+    fisherYates(copy, rand);
+    return copy;
 }
 function seedShuffleMut(array, seedString) {
     const rng = pure_rand_1.default.xoroshiro128plus(parseSeed(seedString));
