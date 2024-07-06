@@ -15,6 +15,7 @@ export * from './util/chance';
 export * from './util/datetime';
 export * from './util/node';
 export * from './util/string';
+export * from './util/purerand';
 
 // Structures
 export { Stopwatch } from './lib/Stopwatch';

@@ -34,6 +34,7 @@ __exportStar(require("./util/chance"), exports);
 __exportStar(require("./util/datetime"), exports);
 __exportStar(require("./util/node"), exports);
 __exportStar(require("./util/string"), exports);
+__exportStar(require("./util/purerand"), exports);
 // Structures
 var Stopwatch_1 = require("./lib/Stopwatch");
 Object.defineProperty(exports, "Stopwatch", { enumerable: true, get: function () { return Stopwatch_1.Stopwatch; } });

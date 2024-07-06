@@ -15,6 +15,7 @@ export * from './util/chance';
 export * from './util/datetime';
 export * from './util/node';
 export * from './util/string';
+export * from './util/purerand';
 export { Stopwatch } from './lib/Stopwatch';
 export { default as deepMerge } from 'deepmerge';
 //# sourceMappingURL=index.d.ts.map
