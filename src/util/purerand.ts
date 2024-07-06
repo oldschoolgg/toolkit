@@ -18,7 +18,15 @@ function parseSeed(str: string | number): number {
 	return hash;
 }
 
-export function seedShuffle<T>(array: T[], seedString: string | number) {
+export function seedShuffle<T>(array: readonly T[], seedString: string | number) {
+	const rng = prand.xoroshiro128plus(parseSeed(seedString));
+	const rand = (min: number, max: number) => {
+		return prand.unsafeUniformIntDistribution(min, max, rng);
+	};
+	fisherYates([...array], rand);
+}
+
+export function seedShuffleMut<T>(array: T[], seedString: string | number) {
 	const rng = prand.xoroshiro128plus(parseSeed(seedString));
 	const rand = (min: number, max: number) => {
 		return prand.unsafeUniformIntDistribution(min, max, rng);

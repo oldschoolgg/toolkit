@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedShuffle = seedShuffle;
+exports.seedShuffleMut = seedShuffleMut;
 const pure_rand_1 = __importDefault(require("pure-rand"));
 function fisherYates(data, rand) {
     for (let i = data.length - 1; i >= 1; --i) {
@@ -23,6 +24,13 @@ function parseSeed(str) {
     return hash;
 }
 function seedShuffle(array, seedString) {
+    const rng = pure_rand_1.default.xoroshiro128plus(parseSeed(seedString));
+    const rand = (min, max) => {
+        return pure_rand_1.default.unsafeUniformIntDistribution(min, max, rng);
+    };
+    fisherYates([...array], rand);
+}
+function seedShuffleMut(array, seedString) {
     const rng = pure_rand_1.default.xoroshiro128plus(parseSeed(seedString));
     const rand = (min, max) => {
         return pure_rand_1.default.unsafeUniformIntDistribution(min, max, rng);
