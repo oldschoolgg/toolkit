@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.randomSnowflake = randomSnowflake;
 exports.mentionCommand = mentionCommand;
 exports.hasBanMemberPerms = hasBanMemberPerms;
+exports.isValidDiscordSnowflake = isValidDiscordSnowflake;
 const discord_js_1 = require("discord.js");
 const discordEpoch = 1420070400000;
 function randomSnowflake() {
@@ -41,5 +42,8 @@ async function hasBanMemberPerms(userID, guild) {
     if (!member)
         return false;
     return member.permissions.has(discord_js_1.PermissionsBitField.Flags.BanMembers);
+}
+function isValidDiscordSnowflake(snowflake) {
+    return /^\d{17,19}$/.test(snowflake);
 }
 //# sourceMappingURL=discord.js.map

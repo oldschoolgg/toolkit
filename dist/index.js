@@ -30,4 +30,10 @@ Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function ()
 __exportStar(require("./lib/TSRedis"), exports);
 __exportStar(require("./lib/MahojiClient/Mahoji"), exports);
 __exportStar(require("./lib/MahojiClient/mahojiTypes"), exports);
+__exportStar(require("./util/array"), exports);
+__exportStar(require("./util/bank"), exports);
+__exportStar(require("./util/chance"), exports);
+__exportStar(require("./util/datetime"), exports);
+__exportStar(require("./util/node"), exports);
+__exportStar(require("./util/string"), exports);
 //# sourceMappingURL=index.js.map

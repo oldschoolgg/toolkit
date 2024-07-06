@@ -52,3 +52,7 @@ export async function hasBanMemberPerms(userID: string, guild: Guild) {
 	if (!member) return false;
 	return member.permissions.has(PermissionsBitField.Flags.BanMembers);
 }
+
+export function isValidDiscordSnowflake(snowflake: string): boolean {
+	return /^\d{17,19}$/.test(snowflake);
+}

@@ -42,4 +42,13 @@ export declare enum PerkTier {
      */
     Seven = 7
 }
+export declare function exponentialPercentScale(percent: number, decay?: number): number;
+export declare function normal(mu?: number, sigma?: number, nsamples?: number): number;
+export declare const alphabeticalSort: (a: string, b: string) => number;
+export declare function dateFm(date: Date): string;
+export declare function getInterval(intervalHours: number): {
+    start: Date;
+    end: Date;
+    nextResetStr: string;
+};
 //# sourceMappingURL=misc.d.ts.map

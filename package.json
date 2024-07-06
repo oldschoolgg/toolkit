@@ -9,9 +9,9 @@
 		"build:tsc": "tsc -p src",
 		"build": "yarn wipedist && yarn build:tsc",
 		"wipedist": "rimraf \"dist/\"",
-		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\"",
+		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\" \"tsc -p tests\"",
 		"test:unit": "vitest run --coverage",
-		"dev": "yarn wipedist && tsc -w -p src",
+		"dev": "yarn lint && yarn build && yarn test",
 		"test:watch": "vitest --coverage"
 	},
 	"dependencies": {

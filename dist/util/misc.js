@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PerkTier = void 0;
+exports.alphabeticalSort = exports.PerkTier = void 0;
 exports.stripEmojis = stripEmojis;
 exports.cleanString = cleanString;
 exports.stringMatches = stringMatches;
@@ -10,6 +10,11 @@ exports.toTitleCase = toTitleCase;
 exports.miniID = miniID;
 exports.truncateString = truncateString;
 exports.splitMessage = splitMessage;
+exports.exponentialPercentScale = exponentialPercentScale;
+exports.normal = normal;
+exports.dateFm = dateFm;
+exports.getInterval = getInterval;
+const discord_js_1 = require("discord.js");
 const e_1 = require("e");
 const emojiRegex = require('emoji-regex');
 const rawEmojiRegex = emojiRegex();
@@ -125,4 +130,34 @@ var PerkTier;
      */
     PerkTier[PerkTier["Seven"] = 7] = "Seven";
 })(PerkTier || (exports.PerkTier = PerkTier = {}));
+function exponentialPercentScale(percent, decay = 0.021) {
+    return 100 * Math.pow(Math.E, -decay * (100 - percent));
+}
+function normal(mu = 0, sigma = 1, nsamples = 6) {
+    let run_total = 0;
+    for (let i = 0; i < nsamples; i++) {
+        run_total += Math.random();
+    }
+    return (sigma * (run_total - nsamples / 2)) / (nsamples / 2) + mu;
+}
+const alphabeticalSort = (a, b) => a.localeCompare(b);
+exports.alphabeticalSort = alphabeticalSort;
+function dateFm(date) {
+    return `${(0, discord_js_1.time)(date, 'T')} (${(0, discord_js_1.time)(date, 'R')})`;
+}
+function getInterval(intervalHours) {
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+    // Find the nearest interval start hour (0, intervalHours, 2*intervalHours, etc.)
+    const startHour = currentHour - (currentHour % intervalHours);
+    const startInterval = new Date(currentTime);
+    startInterval.setHours(startHour, 0, 0, 0);
+    const endInterval = new Date(startInterval);
+    endInterval.setHours(startHour + intervalHours);
+    return {
+        start: startInterval,
+        end: endInterval,
+        nextResetStr: dateFm(endInterval)
+    };
+}
 //# sourceMappingURL=misc.js.map

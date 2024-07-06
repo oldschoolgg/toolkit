@@ -1,3 +1,4 @@
+import { time } from 'discord.js';
 import { notEmpty } from 'e';
 
 const emojiRegex = require('emoji-regex');
@@ -123,4 +124,43 @@ export enum PerkTier {
 	 * Tier 6 Patron
 	 */
 	Seven = 7
+}
+
+export function exponentialPercentScale(percent: number, decay = 0.021) {
+	return 100 * Math.pow(Math.E, -decay * (100 - percent));
+}
+
+export function normal(mu = 0, sigma = 1, nsamples = 6) {
+	let run_total = 0;
+
+	for (let i = 0; i < nsamples; i++) {
+		run_total += Math.random();
+	}
+
+	return (sigma * (run_total - nsamples / 2)) / (nsamples / 2) + mu;
+}
+
+export const alphabeticalSort = (a: string, b: string) => a.localeCompare(b);
+
+export function dateFm(date: Date) {
+	return `${time(date, 'T')} (${time(date, 'R')})`;
+}
+
+export function getInterval(intervalHours: number) {
+	const currentTime = new Date();
+	const currentHour = currentTime.getHours();
+
+	// Find the nearest interval start hour (0, intervalHours, 2*intervalHours, etc.)
+	const startHour = currentHour - (currentHour % intervalHours);
+	const startInterval = new Date(currentTime);
+	startInterval.setHours(startHour, 0, 0, 0);
+
+	const endInterval = new Date(startInterval);
+	endInterval.setHours(startHour + intervalHours);
+
+	return {
+		start: startInterval,
+		end: endInterval,
+		nextResetStr: dateFm(endInterval)
+	};
 }
