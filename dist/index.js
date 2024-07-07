@@ -25,7 +25,6 @@ __exportStar(require("./util/discordJS"), exports);
 __exportStar(require("./util/misc"), exports);
 __exportStar(require("./util/osjs"), exports);
 __exportStar(require("./util/runescape"), exports);
-__exportStar(require("./lib/TSRedis"), exports);
 __exportStar(require("./lib/MahojiClient/Mahoji"), exports);
 __exportStar(require("./lib/MahojiClient/mahojiTypes"), exports);
 __exportStar(require("./util/array"), exports);

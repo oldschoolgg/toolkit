@@ -1,4 +1,4 @@
-import type Redis from 'ioredis';
+import { type RedisOptions } from 'ioredis';
 import { z } from 'zod';
 declare const channels: z.ZodEnum<["main"]>;
 declare const messageSchema: z.ZodUnion<[z.ZodObject<{
@@ -38,7 +38,7 @@ declare const userSchema: z.ZodObject<{
 type RedisUser = z.infer<typeof userSchema>;
 export declare class TSRedis {
     private redis;
-    constructor(redis: Redis);
+    constructor(options?: RedisOptions);
     subscribe(channel: Channel, callback: (message: Message) => void): void;
     publish(message: Message): void;
     set(key: string, value: string): Promise<"OK">;

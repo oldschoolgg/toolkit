@@ -1,4 +1,4 @@
-import type Redis from 'ioredis';
+import Redis, { type RedisOptions } from 'ioredis';
 import { z } from 'zod';
 
 const channels = z.enum(['main']);
@@ -29,8 +29,8 @@ type RedisUser = z.infer<typeof userSchema>;
 export class TSRedis {
 	private redis: Redis;
 
-	constructor(redis: Redis) {
-		this.redis = redis;
+	constructor(options: RedisOptions = {}) {
+		this.redis = new Redis(options);
 	}
 
 	subscribe(channel: Channel, callback: (message: Message) => void) {
