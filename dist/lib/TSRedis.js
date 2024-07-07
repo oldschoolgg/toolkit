@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
 const ioredis_1 = __importDefault(require("ioredis"));
+const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
 const channels = zod_1.z.enum(['main']);
 const patronUpdateMessageSchema = zod_1.z.object({
@@ -22,14 +23,14 @@ const userSchema = zod_1.z.object({
     perk_tier: zod_1.z.number()
 });
 class TSRedis {
-    constructor(options = {}) {
+    constructor(options = { mocked: false }) {
         Object.defineProperty(this, "redis", {
             enumerable: true,
             configurable: true,
             writable: true,
             value: void 0
         });
-        this.redis = new ioredis_1.default(options);
+        this.redis = options.mocked ? new ioredis_mock_1.default(options) : new ioredis_1.default(options);
     }
     subscribe(channel, callback) {
         this.redis.subscribe(channel, (err, count) => {

@@ -38,7 +38,9 @@ declare const userSchema: z.ZodObject<{
 type RedisUser = z.infer<typeof userSchema>;
 export declare class TSRedis {
     private redis;
-    constructor(options?: RedisOptions);
+    constructor(options?: RedisOptions & {
+        mocked: boolean;
+    });
     subscribe(channel: Channel, callback: (message: Message) => void): void;
     publish(message: Message): void;
     set(key: string, value: string): Promise<"OK">;

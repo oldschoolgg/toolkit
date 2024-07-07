@@ -1,4 +1,5 @@
 import Redis, { type RedisOptions } from 'ioredis';
+import MockRedis from 'ioredis-mock';
 import { z } from 'zod';
 
 const channels = z.enum(['main']);
@@ -29,8 +30,8 @@ type RedisUser = z.infer<typeof userSchema>;
 export class TSRedis {
 	private redis: Redis;
 
-	constructor(options: RedisOptions = {}) {
-		this.redis = new Redis(options);
+	constructor(options: RedisOptions & { mocked: boolean } = { mocked: false }) {
+		this.redis = options.mocked ? new MockRedis(options) : new Redis(options);
 	}
 
 	subscribe(channel: Channel, callback: (message: Message) => void) {

@@ -503,6 +503,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:^1.8.3"
     "@oldschoolgg/ts-config": "npm:^0.0.1"
+    "@types/ioredis-mock": "npm:^8.2.5"
     "@types/math-expression-evaluator": "npm:^1.2.2"
     "@types/node": "npm:^20.14.9"
     "@vitest/coverage-v8": "npm:^1.6.0"
@@ -687,6 +688,16 @@ __metadata:
   version: 1.0.5
   resolution: "@types/estree@npm:1.0.5"
   checksum: 10c0/b3b0e334288ddb407c7b3357ca67dbee75ee22db242ca7c56fe27db4e1a31989cb8af48a84dd401deb787fe10cc6b2ab1ee82dc4783be87ededbe3d53c79c70d
+  languageName: node
+  linkType: hard
+
+"@types/ioredis-mock@npm:^8.2.5":
+  version: 8.2.5
+  resolution: "@types/ioredis-mock@npm:8.2.5"
+  dependencies:
+    "@types/node": "npm:*"
+    ioredis: "npm:>=5"
+  checksum: 10c0/1eae87badf8bf88c7c28e16be9af49238fb17cf19419d97fc627a8c218cc39e98043ab87a8f717e672fea492a265159a027c456f169a25b19bba0cac8aa37676
   languageName: node
   linkType: hard
 
@@ -1605,7 +1616,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:^5.4.1":
+"ioredis@npm:>=5, ioredis@npm:^5.4.1":
   version: 5.4.1
   resolution: "ioredis@npm:5.4.1"
   dependencies:
