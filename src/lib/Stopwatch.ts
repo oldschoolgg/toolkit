@@ -55,7 +55,7 @@ export class Stopwatch {
 
 	public lastCheckpoint: number | null = null;
 	public check(text: string) {
-		const checkTime = this.lastCheckpoint ? performance.now() - this.lastCheckpoint : 0;
+		const checkTime = performance.now() - (this.lastCheckpoint ?? this.#start);
 		const checkTimeStr = checkTime > 0 ? `${formatDuration(checkTime, true)}` : '';
 		console.log(`${this.toString()}: ${text} in ${checkTimeStr}`);
 		this.lastCheckpoint = performance.now();

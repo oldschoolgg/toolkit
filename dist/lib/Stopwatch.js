@@ -72,7 +72,7 @@ class Stopwatch {
         return `${(time * 1000).toFixed(this.digits)}μs`;
     }
     check(text) {
-        const checkTime = this.lastCheckpoint ? performance.now() - this.lastCheckpoint : 0;
+        const checkTime = performance.now() - (this.lastCheckpoint ?? __classPrivateFieldGet(this, _Stopwatch_start, "f"));
         const checkTimeStr = checkTime > 0 ? `${(0, datetime_1.formatDuration)(checkTime, true)}` : '';
         console.log(`${this.toString()}: ${text} in ${checkTimeStr}`);
         this.lastCheckpoint = performance.now();
