@@ -22,6 +22,7 @@ export * from './util/datetime';
 export * from './util/node';
 export * from './util/string';
 export * from './util/purerand';
+export * from './util/expressionParser';
 
 // External
 export { default as deepMerge } from 'deepmerge';
