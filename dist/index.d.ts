@@ -1,4 +1,7 @@
 export * from './lib/SimpleTable';
+export * from './lib/GeneralBank';
+export * from './lib/Stopwatch';
+export * from './lib/UserError';
 export * from './lib/Store';
 export * from './util/discord';
 export * from './util/discordJS';
@@ -14,7 +17,5 @@ export * from './util/datetime';
 export * from './util/node';
 export * from './util/string';
 export * from './util/purerand';
-export * from './lib/GeneralBank';
-export { Stopwatch } from './lib/Stopwatch';
 export { default as deepMerge } from 'deepmerge';
 //# sourceMappingURL=index.d.ts.map
