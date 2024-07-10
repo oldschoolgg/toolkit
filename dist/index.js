@@ -18,8 +18,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deepMerge = exports.Stopwatch = void 0;
-__exportStar(require("./SimpleTable"), exports);
-__exportStar(require("./Store"), exports);
+__exportStar(require("./lib/SimpleTable"), exports);
+__exportStar(require("./lib/Store"), exports);
 __exportStar(require("./util/discord"), exports);
 __exportStar(require("./util/discordJS"), exports);
 __exportStar(require("./util/misc"), exports);
@@ -34,8 +34,9 @@ __exportStar(require("./util/datetime"), exports);
 __exportStar(require("./util/node"), exports);
 __exportStar(require("./util/string"), exports);
 __exportStar(require("./util/purerand"), exports);
+__exportStar(require("./lib/GeneralBank"), exports);
 // Structures
-var Stopwatch_1 = require("./Stopwatch");
+var Stopwatch_1 = require("./lib/Stopwatch");
 Object.defineProperty(exports, "Stopwatch", { enumerable: true, get: function () { return Stopwatch_1.Stopwatch; } });
 // External
 var deepmerge_1 = require("deepmerge");

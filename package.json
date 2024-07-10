@@ -49,6 +49,7 @@
 	},
 	"packageManager": "yarn@4.3.1",
 	"exports": {
+		"./TSRedis": "./dist/TSRedis.js",
 		"./*": "./dist/*"
 	}
 }
