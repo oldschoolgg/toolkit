@@ -1,11 +1,10 @@
-export * from './lib/SimpleTable';
-export * from './lib/Store';
+export * from './SimpleTable';
+export * from './Store';
 export * from './util/discord';
 export * from './util/discordJS';
 export * from './util/misc';
 export * from './util/osjs';
 export * from './util/runescape';
-export type EmptyObject = Record<string, never>;
 export * from './lib/MahojiClient/Mahoji';
 export * from './lib/MahojiClient/mahojiTypes';
 export * from './util/array';
@@ -15,6 +14,6 @@ export * from './util/datetime';
 export * from './util/node';
 export * from './util/string';
 export * from './util/purerand';
-export { Stopwatch } from './lib/Stopwatch';
+export { Stopwatch } from './Stopwatch';
 export { default as deepMerge } from 'deepmerge';
 //# sourceMappingURL=index.d.ts.map

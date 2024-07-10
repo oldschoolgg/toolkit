@@ -13,7 +13,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
 var _Stopwatch_start, _Stopwatch_end;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Stopwatch = void 0;
-const datetime_1 = require("../util/datetime");
+const datetime_1 = require("./util/datetime");
 // MIT Copyright (c) 2020 The Sapphire Community and its contributors, gc
 class Stopwatch {
     constructor(digits = 2) {

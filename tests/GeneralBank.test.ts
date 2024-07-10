@@ -1,7 +1,7 @@
 import Decimal from 'decimal.js';
 import { beforeEach, describe, expect, it, test } from 'vitest';
 
-import { GeneralBank } from '../src/lib/GeneralBank';
+import { GeneralBank } from '../dist/GeneralBank';
 
 describe('GeneralBank', () => {
 	let bank: GeneralBank<string>;
