@@ -33,7 +33,7 @@ function formatDuration(ms, short = false) {
     };
     const nums = Object.entries(short ? shortTime : time).filter(val => val[1] !== 0);
     if (nums.length === 0)
-        return '1 second';
+        return `${ms}ms`;
     return nums
         .map(([key, val]) => `${val}${short ? '' : ' '}${key}${val === 1 || short ? '' : 's'}`)
         .join(short ? '' : ', ');
