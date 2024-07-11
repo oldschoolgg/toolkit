@@ -18,5 +18,6 @@ export * from './util/node';
 export * from './util/string';
 export * from './util/purerand';
 export * from './util/expressionParser';
+export * from './types';
 export { default as deepMerge } from 'deepmerge';
 //# sourceMappingURL=index.d.ts.map

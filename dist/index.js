@@ -41,6 +41,7 @@ __exportStar(require("./util/node"), exports);
 __exportStar(require("./util/string"), exports);
 __exportStar(require("./util/purerand"), exports);
 __exportStar(require("./util/expressionParser"), exports);
+__exportStar(require("./types"), exports);
 // External
 var deepmerge_1 = require("deepmerge");
 Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
