@@ -7,4 +7,5 @@ export declare function mentionCommand(client: Client & {
 export declare function hasBanMemberPerms(userID: string, guild: Guild): Promise<boolean>;
 export declare function isValidDiscordSnowflake(snowflake: string): boolean;
 export declare function makeComponents(components: ButtonBuilder[]): InteractionReplyOptions['components'];
+export declare function cleanUsername(username: string): string;
 //# sourceMappingURL=discord.d.ts.map

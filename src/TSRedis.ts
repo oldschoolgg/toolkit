@@ -1,13 +1,7 @@
-import { escapeMarkdown } from 'discord.js';
 import Redis, { type RedisOptions } from 'ioredis';
 import MockRedis from 'ioredis-mock';
 import { z } from 'zod';
-
-import { stripEmojis } from './util/misc';
-
-function cleanUsername(username: string) {
-	return escapeMarkdown(stripEmojis(username)).substring(0, 32);
-}
+import { cleanUsername } from './util/discord';
 
 const channels = z.enum(['main']);
 

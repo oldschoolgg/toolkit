@@ -4,11 +4,13 @@ import {
 	ComponentType,
 	type Guild,
 	type InteractionReplyOptions,
-	PermissionsBitField
+	PermissionsBitField,
+	escapeMarkdown
 } from 'discord.js';
 import { chunk } from 'e';
 
 import type { MahojiClient } from '../lib/MahojiClient/Mahoji';
+import { stripEmojis } from './misc';
 
 const discordEpoch = 1_420_070_400_000;
 
@@ -68,4 +70,8 @@ export function isValidDiscordSnowflake(snowflake: string): boolean {
 
 export function makeComponents(components: ButtonBuilder[]): InteractionReplyOptions['components'] {
 	return chunk(components, 5).map(i => ({ components: i, type: ComponentType.ActionRow }));
+}
+
+export function cleanUsername(username: string) {
+	return escapeMarkdown(stripEmojis(username)).substring(0, 32);
 }

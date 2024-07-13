@@ -5,8 +5,10 @@ exports.mentionCommand = mentionCommand;
 exports.hasBanMemberPerms = hasBanMemberPerms;
 exports.isValidDiscordSnowflake = isValidDiscordSnowflake;
 exports.makeComponents = makeComponents;
+exports.cleanUsername = cleanUsername;
 const discord_js_1 = require("discord.js");
 const e_1 = require("e");
+const misc_1 = require("./misc");
 const discordEpoch = 1420070400000;
 function randomSnowflake() {
     const timestamp = Date.now() - discordEpoch;
@@ -50,5 +52,8 @@ function isValidDiscordSnowflake(snowflake) {
 }
 function makeComponents(components) {
     return (0, e_1.chunk)(components, 5).map(i => ({ components: i, type: discord_js_1.ComponentType.ActionRow }));
+}
+function cleanUsername(username) {
+    return (0, discord_js_1.escapeMarkdown)((0, misc_1.stripEmojis)(username)).substring(0, 32);
 }
 //# sourceMappingURL=discord.js.map

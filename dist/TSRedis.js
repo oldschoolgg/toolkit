@@ -4,14 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
-const discord_js_1 = require("discord.js");
 const ioredis_1 = __importDefault(require("ioredis"));
 const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
-const misc_1 = require("./util/misc");
-function cleanUsername(username) {
-    return (0, discord_js_1.escapeMarkdown)((0, misc_1.stripEmojis)(username)).substring(0, 32);
-}
+const discord_1 = require("./util/discord");
 const channels = zod_1.z.enum(['main']);
 const patronUpdateMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('text'),
@@ -76,7 +72,7 @@ class TSRedis {
     }
     async setUser(userID, changes) {
         if (changes.username) {
-            changes.username = cleanUsername(changes.username);
+            changes.username = (0, discord_1.cleanUsername)(changes.username);
         }
         return this.redis.hset(this.getUserHash(userID), changes);
     }
