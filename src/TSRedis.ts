@@ -21,8 +21,8 @@ type Message = z.infer<typeof messageSchema>;
 type Channel = z.infer<typeof channels>;
 
 const userSchema = z.object({
-	username: z.string(),
-	perk_tier: z.number()
+	username: z.string().nullable(),
+	perk_tier: z.number().nullable()
 });
 
 type RedisUser = z.infer<typeof userSchema>;
@@ -77,8 +77,12 @@ export class TSRedis {
 		return this.redis.hset(this.getUserHash(userID), changes);
 	}
 
-	async getUser(userID: string): Promise<Partial<RedisUser>> {
+	async getUser(userID: string): Promise<RedisUser> {
 		const user = await this.redis.hgetall(this.getUserHash(userID));
-		return user;
+
+		return {
+			username: user.username ?? null,
+			perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null
+		};
 	}
 }

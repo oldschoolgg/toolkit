@@ -26,14 +26,14 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
 type Message = z.infer<typeof messageSchema>;
 type Channel = z.infer<typeof channels>;
 declare const userSchema: z.ZodObject<{
-    username: z.ZodString;
-    perk_tier: z.ZodNumber;
+    username: z.ZodNullable<z.ZodString>;
+    perk_tier: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    username: string;
-    perk_tier: number;
+    username: string | null;
+    perk_tier: number | null;
 }, {
-    username: string;
-    perk_tier: number;
+    username: string | null;
+    perk_tier: number | null;
 }>;
 type RedisUser = z.infer<typeof userSchema>;
 export declare class TSRedis {
@@ -47,7 +47,7 @@ export declare class TSRedis {
     get(key: string): Promise<string | null>;
     private getUserHash;
     setUser(userID: string, changes: Partial<RedisUser>): Promise<number>;
-    getUser(userID: string): Promise<Partial<RedisUser>>;
+    getUser(userID: string): Promise<RedisUser>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

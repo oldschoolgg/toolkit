@@ -19,8 +19,8 @@ const pingMessageSchema = zod_1.z.object({
 });
 const messageSchema = zod_1.z.union([patronUpdateMessageSchema, pingMessageSchema]);
 const userSchema = zod_1.z.object({
-    username: zod_1.z.string(),
-    perk_tier: zod_1.z.number()
+    username: zod_1.z.string().nullable(),
+    perk_tier: zod_1.z.number().nullable()
 });
 class TSRedis {
     constructor(options = { mocked: false }) {
@@ -72,7 +72,10 @@ class TSRedis {
     }
     async getUser(userID) {
         const user = await this.redis.hgetall(this.getUserHash(userID));
-        return user;
+        return {
+            username: user.username ?? null,
+            perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null
+        };
     }
 }
 exports.TSRedis = TSRedis;
