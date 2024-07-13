@@ -19,29 +19,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deepMerge = void 0;
 // Structures
-__exportStar(require("./lib/SimpleTable"), exports);
 __exportStar(require("./lib/GeneralBank"), exports);
+__exportStar(require("./lib/SimpleTable"), exports);
 __exportStar(require("./lib/Stopwatch"), exports);
 // Misc
-__exportStar(require("./lib/UserError"), exports);
 __exportStar(require("./lib/Store"), exports);
+__exportStar(require("./lib/UserError"), exports);
 // Util
-__exportStar(require("./util/discord"), exports);
-__exportStar(require("./util/discordJS"), exports);
-__exportStar(require("./util/misc"), exports);
-__exportStar(require("./util/osjs"), exports);
-__exportStar(require("./util/runescape"), exports);
 __exportStar(require("./lib/MahojiClient/Mahoji"), exports);
 __exportStar(require("./lib/MahojiClient/mahojiTypes"), exports);
+__exportStar(require("./types"), exports);
 __exportStar(require("./util/array"), exports);
 __exportStar(require("./util/bank"), exports);
 __exportStar(require("./util/chance"), exports);
 __exportStar(require("./util/datetime"), exports);
-__exportStar(require("./util/node"), exports);
-__exportStar(require("./util/string"), exports);
-__exportStar(require("./util/purerand"), exports);
+__exportStar(require("./util/discord"), exports);
+__exportStar(require("./util/discordJS"), exports);
 __exportStar(require("./util/expressionParser"), exports);
-__exportStar(require("./types"), exports);
+__exportStar(require("./util/misc"), exports);
+__exportStar(require("./util/node"), exports);
+__exportStar(require("./util/osjs"), exports);
+__exportStar(require("./util/purerand"), exports);
+__exportStar(require("./util/runescape"), exports);
+__exportStar(require("./util/string"), exports);
 // External
 var deepmerge_1 = require("deepmerge");
 Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });

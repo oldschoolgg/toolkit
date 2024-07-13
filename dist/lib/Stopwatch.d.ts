@@ -7,7 +7,7 @@ export declare class Stopwatch {
     restart(): this;
     reset(): this;
     start(): this;
-    stop(): this;
+    stop(text?: string): this;
     toString(): string;
     lastCheckpoint: number | null;
     check(text: string): void;

@@ -41,8 +41,11 @@ export class Stopwatch {
 		return this;
 	}
 
-	public stop(): this {
+	public stop(text?: string): this {
 		if (this.running) this.#end = performance.now();
+		if (text) {
+			console.log(`${this.toString()}: ${text}`);
+		}
 		return this;
 	}
 
@@ -56,7 +59,7 @@ export class Stopwatch {
 	public lastCheckpoint: number | null = null;
 	public check(text: string) {
 		const checkTime = performance.now() - (this.lastCheckpoint ?? this.#start);
-		const checkTimeStr = checkTime > 0 ? `${formatDuration(checkTime, true)}` : '';
+		const checkTimeStr = checkTime > 0 ? `${formatDuration(checkTime, true, true)}` : '';
 		console.log(`${this.toString()}: ${text} in ${checkTimeStr}`);
 		this.lastCheckpoint = performance.now();
 	}

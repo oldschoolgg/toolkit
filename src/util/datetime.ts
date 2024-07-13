@@ -14,7 +14,7 @@ export function calcPerHour(value: number, duration: number) {
 	return (value / (duration / Time.Minute)) * 60;
 }
 
-export function formatDuration(ms: number, short = false) {
+export function formatDuration(ms: number, short = false, precise = false) {
 	if (ms < 0) ms = -ms;
 	const time = {
 		day: Math.floor(ms / 86_400_000),
@@ -29,7 +29,9 @@ export function formatDuration(ms: number, short = false) {
 		s: Math.floor(ms / 1000) % 60
 	};
 	const nums = Object.entries(short ? shortTime : time).filter(val => val[1] !== 0);
-	if (nums.length === 0) return `${ms}ms`;
+	if (nums.length === 0) {
+		return precise ? `${ms}ms` : 'less than 1 second';
+	}
 	return nums
 		.map(([key, val]) => `${val}${short ? '' : ' '}${key}${val === 1 || short ? '' : 's'}`)
 		.join(short ? '' : ', ');

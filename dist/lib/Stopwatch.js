@@ -58,9 +58,12 @@ class Stopwatch {
         }
         return this;
     }
-    stop() {
+    stop(text) {
         if (this.running)
             __classPrivateFieldSet(this, _Stopwatch_end, performance.now(), "f");
+        if (text) {
+            console.log(`${this.toString()}: ${text}`);
+        }
         return this;
     }
     toString() {
@@ -73,7 +76,7 @@ class Stopwatch {
     }
     check(text) {
         const checkTime = performance.now() - (this.lastCheckpoint ?? __classPrivateFieldGet(this, _Stopwatch_start, "f"));
-        const checkTimeStr = checkTime > 0 ? `${(0, datetime_1.formatDuration)(checkTime, true)}` : '';
+        const checkTimeStr = checkTime > 0 ? `${(0, datetime_1.formatDuration)(checkTime, true, true)}` : '';
         console.log(`${this.toString()}: ${text} in ${checkTimeStr}`);
         this.lastCheckpoint = performance.now();
     }
