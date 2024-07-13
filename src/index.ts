@@ -30,3 +30,4 @@ export { default as deepMerge } from 'deepmerge';
 
 import { detailedDiff } from 'deep-object-diff';
 export { detailedDiff as deepObjectDiff };
+export { default as deepEqual } from 'fast-deep-equal';

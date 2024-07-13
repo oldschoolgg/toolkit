@@ -521,6 +521,7 @@ __metadata:
     discord.js: "npm:^14.15.3"
     e: "npm:0.2.33"
     emoji-regex: "npm:^10.2.1"
+    fast-deep-equal: "npm:^3.1.3"
     ioredis: "npm:^5.4.1"
     ioredis-mock: "npm:^8.9.0"
     math-expression-evaluator: "npm:^1.3.14"
