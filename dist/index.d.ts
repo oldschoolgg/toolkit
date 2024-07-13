@@ -20,4 +20,6 @@ export * from './util/purerand';
 export * from './util/runescape';
 export * from './util/string';
 export { default as deepMerge } from 'deepmerge';
+import { detailedDiff } from 'deep-object-diff';
+export { detailedDiff as deepObjectDiff };
 //# sourceMappingURL=index.d.ts.map

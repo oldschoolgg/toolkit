@@ -27,3 +27,6 @@ export * from './util/string';
 
 // External
 export { default as deepMerge } from 'deepmerge';
+
+import { detailedDiff } from 'deep-object-diff';
+export { detailedDiff as deepObjectDiff };

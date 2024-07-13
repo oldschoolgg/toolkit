@@ -17,7 +17,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deepMerge = void 0;
+exports.deepObjectDiff = exports.deepMerge = void 0;
 // Structures
 __exportStar(require("./lib/GeneralBank"), exports);
 __exportStar(require("./lib/SimpleTable"), exports);
@@ -45,4 +45,6 @@ __exportStar(require("./util/string"), exports);
 // External
 var deepmerge_1 = require("deepmerge");
 Object.defineProperty(exports, "deepMerge", { enumerable: true, get: function () { return __importDefault(deepmerge_1).default; } });
+const deep_object_diff_1 = require("deep-object-diff");
+Object.defineProperty(exports, "deepObjectDiff", { enumerable: true, get: function () { return deep_object_diff_1.detailedDiff; } });
 //# sourceMappingURL=index.js.map
