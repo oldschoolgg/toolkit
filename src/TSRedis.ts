@@ -1,6 +1,13 @@
+import { escapeMarkdown } from 'discord.js';
 import Redis, { type RedisOptions } from 'ioredis';
 import MockRedis from 'ioredis-mock';
 import { z } from 'zod';
+
+import { stripEmojis } from './util/misc';
+
+function cleanUsername(username: string) {
+	return escapeMarkdown(stripEmojis(username)).substring(0, 32);
+}
 
 const channels = z.enum(['main']);
 
@@ -22,7 +29,9 @@ type Channel = z.infer<typeof channels>;
 
 const userSchema = z.object({
 	username: z.string().nullable(),
-	perk_tier: z.number().nullable()
+	perk_tier: z.number().nullable(),
+	osb_badges: z.string().nullable(),
+	bso_badges: z.string().nullable()
 });
 
 type RedisUser = z.infer<typeof userSchema>;
@@ -74,6 +83,9 @@ export class TSRedis {
 	}
 
 	async setUser(userID: string, changes: Partial<RedisUser>) {
+		if (changes.username) {
+			changes.username = cleanUsername(changes.username);
+		}
 		return this.redis.hset(this.getUserHash(userID), changes);
 	}
 
@@ -82,7 +94,9 @@ export class TSRedis {
 
 		return {
 			username: user.username ?? null,
-			perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null
+			perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null,
+			osb_badges: user.osb_badges ?? null,
+			bso_badges: user.bso_badges ?? null
 		};
 	}
 }

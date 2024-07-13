@@ -4,9 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
+const discord_js_1 = require("discord.js");
 const ioredis_1 = __importDefault(require("ioredis"));
 const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
+const misc_1 = require("./util/misc");
+function cleanUsername(username) {
+    return (0, discord_js_1.escapeMarkdown)((0, misc_1.stripEmojis)(username)).substring(0, 32);
+}
 const channels = zod_1.z.enum(['main']);
 const patronUpdateMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('text'),
@@ -20,7 +25,9 @@ const pingMessageSchema = zod_1.z.object({
 const messageSchema = zod_1.z.union([patronUpdateMessageSchema, pingMessageSchema]);
 const userSchema = zod_1.z.object({
     username: zod_1.z.string().nullable(),
-    perk_tier: zod_1.z.number().nullable()
+    perk_tier: zod_1.z.number().nullable(),
+    osb_badges: zod_1.z.string().nullable(),
+    bso_badges: zod_1.z.string().nullable()
 });
 class TSRedis {
     constructor(options = { mocked: false }) {
@@ -68,13 +75,18 @@ class TSRedis {
         return `user.${userID}`;
     }
     async setUser(userID, changes) {
+        if (changes.username) {
+            changes.username = cleanUsername(changes.username);
+        }
         return this.redis.hset(this.getUserHash(userID), changes);
     }
     async getUser(userID) {
         const user = await this.redis.hgetall(this.getUserHash(userID));
         return {
             username: user.username ?? null,
-            perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null
+            perk_tier: user.perk_tier ? Number.parseInt(user.perk_tier) : null,
+            osb_badges: user.osb_badges ?? null,
+            bso_badges: user.bso_badges ?? null
         };
     }
 }

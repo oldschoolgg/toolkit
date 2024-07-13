@@ -7,12 +7,12 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     channel: z.ZodEnum<["main"]>;
 }, "strip", z.ZodTypeAny, {
     type: "text";
-    text: string;
     channel: "main";
+    text: string;
 }, {
     type: "text";
-    text: string;
     channel: "main";
+    text: string;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"ping">;
     channel: z.ZodEnum<["main"]>;
@@ -28,12 +28,18 @@ type Channel = z.infer<typeof channels>;
 declare const userSchema: z.ZodObject<{
     username: z.ZodNullable<z.ZodString>;
     perk_tier: z.ZodNullable<z.ZodNumber>;
+    osb_badges: z.ZodNullable<z.ZodString>;
+    bso_badges: z.ZodNullable<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     username: string | null;
     perk_tier: number | null;
+    osb_badges: string | null;
+    bso_badges: string | null;
 }, {
     username: string | null;
     perk_tier: number | null;
+    osb_badges: string | null;
+    bso_badges: string | null;
 }>;
 type RedisUser = z.infer<typeof userSchema>;
 export declare class TSRedis {
