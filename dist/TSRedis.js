@@ -7,17 +7,15 @@ exports.TSRedis = void 0;
 const ioredis_1 = __importDefault(require("ioredis"));
 const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
-const channels = zod_1.z.enum(['main']);
 const newPatronMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('new_patron'),
-    tier: zod_1.z.number().int(),
-    channel: channels
+    tier: zod_1.z.number().int()
 });
 const pingMessageSchema = zod_1.z.object({
-    type: zod_1.z.literal('ping'),
-    channel: channels
+    type: zod_1.z.literal('ping')
 });
 const messageSchema = zod_1.z.union([newPatronMessageSchema, pingMessageSchema]);
+const CHANNEL_ID = 'main';
 class TSRedis {
     constructor(options = { mocked: false }) {
         Object.defineProperty(this, "redis", {
@@ -28,8 +26,8 @@ class TSRedis {
         });
         this.redis = options.mocked ? new ioredis_mock_1.default(options) : new ioredis_1.default(options);
     }
-    subscribe(channel, callback) {
-        this.redis.subscribe(channel, (err, count) => {
+    subscribe(callback) {
+        this.redis.subscribe(CHANNEL_ID, (err, count) => {
             if (err) {
                 console.error('Failed to subscribe: ', err);
             }
@@ -38,7 +36,7 @@ class TSRedis {
             }
         });
         this.redis.on('message', (receivedChannel, message) => {
-            if (receivedChannel === channel) {
+            if (receivedChannel === CHANNEL_ID) {
                 try {
                     const parsedMessage = JSON.parse(message);
                     const validatedMessage = messageSchema.parse(parsedMessage);
@@ -52,7 +50,7 @@ class TSRedis {
     }
     publish(message) {
         const parsedMessage = messageSchema.parse(message);
-        this.redis.publish(parsedMessage.channel, JSON.stringify(parsedMessage));
+        this.redis.publish(CHANNEL_ID, JSON.stringify(parsedMessage));
     }
 }
 exports.TSRedis = TSRedis;
