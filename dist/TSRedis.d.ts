@@ -15,6 +15,21 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: "ping";
 }, {
     type: "ping";
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"patron_tier_change">;
+    new_tier: z.ZodNumber;
+    old_tier: z.ZodNumber;
+    discord_id: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    type: "patron_tier_change";
+    new_tier: number;
+    old_tier: number;
+    discord_id: string;
+}, {
+    type: "patron_tier_change";
+    new_tier: number;
+    old_tier: number;
+    discord_id: string;
 }>]>;
 type Message = z.infer<typeof messageSchema>;
 export declare class TSRedis {

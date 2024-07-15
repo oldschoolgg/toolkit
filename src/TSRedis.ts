@@ -7,11 +7,18 @@ const newPatronMessageSchema = z.object({
 	tier: z.number().int()
 });
 
+const patronTierChangeMessageSchema = z.object({
+	type: z.literal('patron_tier_change'),
+	new_tier: z.number().int(),
+	old_tier: z.number().int(),
+	discord_id: z.string()
+});
+
 const pingMessageSchema = z.object({
 	type: z.literal('ping')
 });
 
-const messageSchema = z.union([newPatronMessageSchema, pingMessageSchema]);
+const messageSchema = z.union([newPatronMessageSchema, pingMessageSchema, patronTierChangeMessageSchema]);
 
 type Message = z.infer<typeof messageSchema>;
 
