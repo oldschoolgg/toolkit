@@ -11,7 +11,7 @@ const patronTierChangeMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('patron_tier_change'),
     new_tier: zod_1.z.number().int(),
     old_tier: zod_1.z.number().int(),
-    discord_id: zod_1.z.string(),
+    discord_ids: zod_1.z.array(zod_1.z.string()),
     first_time_patron: zod_1.z.boolean()
 });
 const pingMessageSchema = zod_1.z.object({

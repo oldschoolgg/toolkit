@@ -6,7 +6,7 @@ const patronTierChangeMessageSchema = z.object({
 	type: z.literal('patron_tier_change'),
 	new_tier: z.number().int(),
 	old_tier: z.number().int(),
-	discord_id: z.string(),
+	discord_ids: z.array(z.string()),
 	first_time_patron: z.boolean()
 });
 

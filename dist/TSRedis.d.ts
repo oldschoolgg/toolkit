@@ -10,19 +10,19 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     type: z.ZodLiteral<"patron_tier_change">;
     new_tier: z.ZodNumber;
     old_tier: z.ZodNumber;
-    discord_id: z.ZodString;
+    discord_ids: z.ZodArray<z.ZodString, "many">;
     first_time_patron: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
     type: "patron_tier_change";
     new_tier: number;
     old_tier: number;
-    discord_id: string;
+    discord_ids: string[];
     first_time_patron: boolean;
 }, {
     type: "patron_tier_change";
     new_tier: number;
     old_tier: number;
-    discord_id: string;
+    discord_ids: string[];
     first_time_patron: boolean;
 }>]>;
 type Message = z.infer<typeof messageSchema>;
