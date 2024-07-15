@@ -2,23 +2,19 @@ import Redis, { type RedisOptions } from 'ioredis';
 import MockRedis from 'ioredis-mock';
 import { z } from 'zod';
 
-const newPatronMessageSchema = z.object({
-	type: z.literal('new_patron'),
-	tier: z.number().int()
-});
-
 const patronTierChangeMessageSchema = z.object({
 	type: z.literal('patron_tier_change'),
 	new_tier: z.number().int(),
 	old_tier: z.number().int(),
-	discord_id: z.string()
+	discord_id: z.string(),
+	first_time_patron: z.boolean()
 });
 
 const pingMessageSchema = z.object({
 	type: z.literal('ping')
 });
 
-const messageSchema = z.union([newPatronMessageSchema, pingMessageSchema, patronTierChangeMessageSchema]);
+const messageSchema = z.union([pingMessageSchema, patronTierChangeMessageSchema]);
 
 type Message = z.infer<typeof messageSchema>;
 

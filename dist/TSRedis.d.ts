@@ -1,15 +1,6 @@
 import { type RedisOptions } from 'ioredis';
 import { z } from 'zod';
 declare const messageSchema: z.ZodUnion<[z.ZodObject<{
-    type: z.ZodLiteral<"new_patron">;
-    tier: z.ZodNumber;
-}, "strip", z.ZodTypeAny, {
-    type: "new_patron";
-    tier: number;
-}, {
-    type: "new_patron";
-    tier: number;
-}>, z.ZodObject<{
     type: z.ZodLiteral<"ping">;
 }, "strip", z.ZodTypeAny, {
     type: "ping";
@@ -20,16 +11,19 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
     new_tier: z.ZodNumber;
     old_tier: z.ZodNumber;
     discord_id: z.ZodString;
+    first_time_patron: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
     type: "patron_tier_change";
     new_tier: number;
     old_tier: number;
     discord_id: string;
+    first_time_patron: boolean;
 }, {
     type: "patron_tier_change";
     new_tier: number;
     old_tier: number;
     discord_id: string;
+    first_time_patron: boolean;
 }>]>;
 type Message = z.infer<typeof messageSchema>;
 export declare class TSRedis {

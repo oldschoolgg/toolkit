@@ -7,20 +7,17 @@ exports.TSRedis = void 0;
 const ioredis_1 = __importDefault(require("ioredis"));
 const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
-const newPatronMessageSchema = zod_1.z.object({
-    type: zod_1.z.literal('new_patron'),
-    tier: zod_1.z.number().int()
-});
 const patronTierChangeMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('patron_tier_change'),
     new_tier: zod_1.z.number().int(),
     old_tier: zod_1.z.number().int(),
-    discord_id: zod_1.z.string()
+    discord_id: zod_1.z.string(),
+    first_time_patron: zod_1.z.boolean()
 });
 const pingMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('ping')
 });
-const messageSchema = zod_1.z.union([newPatronMessageSchema, pingMessageSchema, patronTierChangeMessageSchema]);
+const messageSchema = zod_1.z.union([pingMessageSchema, patronTierChangeMessageSchema]);
 const CHANNEL_ID = 'main';
 class TSRedis {
     constructor(options = { mocked: false }) {
