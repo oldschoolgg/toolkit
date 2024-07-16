@@ -214,9 +214,7 @@ export interface Handlers {
 		command: ICommand;
 		interaction: ChatInputCommandInteraction;
 		options: CommandOptions;
-	}) => Promise<
-		undefined | { reason: Awaited<InteractionReplyOptions>; silent: boolean; dontRunPostCommand?: boolean }
-	>;
+	}) => Promise<undefined | { reason: Awaited<InteractionReplyOptions>; dontRunPostCommand?: boolean }>;
 	postCommand?: (options: {
 		command: ICommand;
 		interaction: ChatInputCommandInteraction;

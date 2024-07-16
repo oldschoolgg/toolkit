@@ -39,7 +39,6 @@ export interface Handlers {
         options: CommandOptions;
     }) => Promise<undefined | {
         reason: Awaited<InteractionReplyOptions>;
-        silent: boolean;
         dontRunPostCommand?: boolean;
     }>;
     postCommand?: (options: {
