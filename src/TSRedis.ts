@@ -27,15 +27,13 @@ export class TSRedis {
 	}
 
 	disconnect() {
-		return this.redis.disconnect();
+		return this.redis.disconnect(false);
 	}
 
 	subscribe(callback: (message: Message) => void) {
-		this.redis.subscribe(CHANNEL_ID, (err, count) => {
+		this.redis.subscribe(CHANNEL_ID, err => {
 			if (err) {
 				console.error('Failed to subscribe: ', err);
-			} else {
-				console.log(`Subscribed successfully! This client is currently subscribed to ${count} channels.`);
 			}
 		});
 

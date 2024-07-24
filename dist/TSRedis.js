@@ -30,15 +30,12 @@ class TSRedis {
         this.redis = options.mocked ? new ioredis_mock_1.default(options) : new ioredis_1.default(options);
     }
     disconnect() {
-        return this.redis.disconnect();
+        return this.redis.disconnect(false);
     }
     subscribe(callback) {
-        this.redis.subscribe(CHANNEL_ID, (err, count) => {
+        this.redis.subscribe(CHANNEL_ID, err => {
             if (err) {
                 console.error('Failed to subscribe: ', err);
-            }
-            else {
-                console.log(`Subscribed successfully! This client is currently subscribed to ${count} channels.`);
             }
         });
         this.redis.on('message', (receivedChannel, message) => {
