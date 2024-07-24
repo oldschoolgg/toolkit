@@ -29,6 +29,9 @@ class TSRedis {
         });
         this.redis = options.mocked ? new ioredis_mock_1.default(options) : new ioredis_1.default(options);
     }
+    disconnect() {
+        return this.redis.disconnect();
+    }
     subscribe(callback) {
         this.redis.subscribe(CHANNEL_ID, (err, count) => {
             if (err) {

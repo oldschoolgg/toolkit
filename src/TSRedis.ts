@@ -26,6 +26,10 @@ export class TSRedis {
 		this.redis = options.mocked ? new MockRedis(options) : new Redis(options);
 	}
 
+	disconnect() {
+		return this.redis.disconnect();
+	}
+
 	subscribe(callback: (message: Message) => void) {
 		this.redis.subscribe(CHANNEL_ID, (err, count) => {
 			if (err) {

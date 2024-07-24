@@ -31,6 +31,7 @@ export declare class TSRedis {
     constructor(options?: RedisOptions & {
         mocked: boolean;
     });
+    disconnect(): void;
     subscribe(callback: (message: Message) => void): void;
     publish(message: Message): void;
 }
