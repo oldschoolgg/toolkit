@@ -33,7 +33,7 @@ export declare class TSRedis {
     });
     disconnect(): void;
     subscribe(callback: (message: Message) => void): void;
-    publish(message: Message): void;
+    publish(message: Message): Promise<number>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

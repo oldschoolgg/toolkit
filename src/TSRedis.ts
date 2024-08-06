@@ -52,6 +52,6 @@ export class TSRedis {
 
 	publish(message: Message) {
 		const parsedMessage = messageSchema.parse(message);
-		this.redis.publish(CHANNEL_ID, JSON.stringify(parsedMessage));
+		return this.redis.publish(CHANNEL_ID, JSON.stringify(parsedMessage));
 	}
 }
