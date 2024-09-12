@@ -54,6 +54,6 @@ function makeComponents(components) {
     return (0, e_1.chunk)(components, 5).map(i => ({ components: i, type: discord_js_1.ComponentType.ActionRow }));
 }
 function cleanUsername(username) {
-    return (0, discord_js_1.escapeMarkdown)((0, misc_1.stripEmojis)(username)).substring(0, 32);
+    return (0, misc_1.stripEmojis)(username).substring(0, 32).replaceAll('@', '');
 }
 //# sourceMappingURL=discord.js.map

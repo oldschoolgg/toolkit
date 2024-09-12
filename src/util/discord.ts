@@ -4,8 +4,7 @@ import {
 	ComponentType,
 	type Guild,
 	type InteractionReplyOptions,
-	PermissionsBitField,
-	escapeMarkdown
+	PermissionsBitField
 } from 'discord.js';
 import { chunk } from 'e';
 
@@ -73,5 +72,5 @@ export function makeComponents(components: ButtonBuilder[]): InteractionReplyOpt
 }
 
 export function cleanUsername(username: string) {
-	return escapeMarkdown(stripEmojis(username)).substring(0, 32);
+	return stripEmojis(username).substring(0, 32).replaceAll('@', '');
 }
