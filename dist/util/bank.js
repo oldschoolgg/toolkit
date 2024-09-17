@@ -10,11 +10,11 @@ exports.generateRandomBank = generateRandomBank;
 const e_1 = require("e");
 const oldschooljs_1 = require("oldschooljs");
 function increaseBankQuantitesByPercent(bank, percent, whitelist = null) {
-    for (const [key, value] of Object.entries(bank.bank)) {
-        if (whitelist !== null && !whitelist.includes(Number.parseInt(key)))
+    for (const [item, qty] of bank.items()) {
+        if (whitelist !== null && !whitelist.includes(item.id))
             continue;
-        const increased = Math.floor((0, e_1.increaseNumByPercent)(value, percent));
-        bank.bank[key] = increased;
+        const increased = Math.floor((0, e_1.increaseNumByPercent)(qty, percent));
+        bank.set(item.id, increased);
     }
 }
 function convertBankToPerHourStats(bank, time) {

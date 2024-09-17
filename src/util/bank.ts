@@ -3,10 +3,10 @@ import { Bank, Items } from 'oldschooljs';
 import type { ItemBank } from 'oldschooljs/dist/meta/types';
 
 export function increaseBankQuantitesByPercent(bank: Bank, percent: number, whitelist: number[] | null = null) {
-	for (const [key, value] of Object.entries(bank.bank)) {
-		if (whitelist !== null && !whitelist.includes(Number.parseInt(key))) continue;
-		const increased = Math.floor(increaseNumByPercent(value, percent));
-		bank.bank[key] = increased;
+	for (const [item, qty] of bank.items()) {
+		if (whitelist !== null && !whitelist.includes(item.id)) continue;
+		const increased = Math.floor(increaseNumByPercent(qty, percent));
+		bank.set(item.id, increased);
 	}
 }
 
