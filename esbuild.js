@@ -12,7 +12,7 @@ esbuild.build({
   format: 'esm',
   target: 'node20', 
   keepNames: true,
-  external: ["discord.js"],
+  external: ["discord.js", "ioredis"],
   treeShaking: true, 
   loader: {
     '.json': 'copy',
@@ -30,7 +30,7 @@ esbuild.build({
   format: 'cjs',
   target: 'node20',
   keepNames: true,
-  external: ["discord.js"],
+  external: ["discord.js", "ioredis"],
   loader: {
     '.json': 'copy',
   },
