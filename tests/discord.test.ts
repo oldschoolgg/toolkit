@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
-
-import { randomSnowflake } from '../src/index';
+import { randomSnowflake } from '../src/util';
 
 test('generateSnowflake generates a valid snowflake', () => {
 	const snowflake = randomSnowflake();

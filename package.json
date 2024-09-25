@@ -2,14 +2,21 @@
 	"name": "@oldschoolgg/toolkit",
 	"version": "0.0.24",
 	"description": "Oldschoolgg Toolkit",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"exports": {
+		"util": {
+			"types": "./dist/esm/util.js",
+			"default": "./dist/esm/util.js"
+		},
+		"structures": {
+			"types": "./dist/esm/structures.js",
+			"default": "./dist/esm/structures.js"
+		}
+	},
 	"scripts": {
 		"lint": "biome check --write --diagnostic-level=error",
 		"test:lint": "biome check --diagnostic-level=error",
-		"build:tsc": "tsc -p src",
-		"build": "yarn wipedist && yarn build:tsc",
-		"wipedist": "rimraf \"dist/\"",
+		"build": "yarn wipedist && tsc -p src && node esbuild.js",
+		"wipedist": "node -e \"try { require('fs').rmSync('dist', { recursive: true }) } catch(_){}\"",
 		"test": "concurrently \"tsc -p src\" \"yarn test:lint\" \"yarn test:unit\" \"tsc -p tests\"",
 		"test:unit": "vitest run --coverage",
 		"dev": "yarn lint && yarn build && yarn test",
@@ -38,7 +45,7 @@
 		"@vitest/coverage-v8": "^2.1.1",
 		"concurrently": "^9.0.1",
 		"discord.js": "^14.16.2",
-		"rimraf": "^5.0.7",
+		"esbuild": "^0.24.0",
 		"typescript": "^5.6.2",
 		"vitest": "^2.1.1"
 	},
@@ -46,9 +53,7 @@
 		"node": ">=20.15.0"
 	},
 	"packageManager": "yarn@4.3.1",
-	"exports": {
-		"./TSRedis": "./dist/TSRedis.js",
-		".": "./dist/index.js",
-		"./*": "./dist/*"
+	"resolutions": {
+		"esbuild": "0.21.5"
 	}
 }

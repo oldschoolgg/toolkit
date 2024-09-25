@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
-
-import { cleanUsername } from '../src/index';
+import { cleanUsername } from '../src/util';
 
 test('cleanUsername', () => {
 	expect(cleanUsername('just_as')).toEqual('just_as');

@@ -1,6 +1,5 @@
 import { expect, test } from 'vitest';
-
-import { evalMathExpression } from '../src/util/expressionParser';
+import { evalMathExpression } from '../src/util';
 
 test('evalMathExpression.test', () => {
 	expect(evalMathExpression('10')).toEqual(10);
