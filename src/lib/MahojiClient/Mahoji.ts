@@ -23,7 +23,7 @@ export function convertCommandOptionToAPIOption(option: CommandOption): any {
 		case ApplicationCommandOptionType.String: {
 			return {
 				...option,
-				autocomplete: 'autocomplete' in option ?? false
+				autocomplete: 'autocomplete' in option
 			};
 		}
 

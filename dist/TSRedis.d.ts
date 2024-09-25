@@ -28,12 +28,13 @@ declare const messageSchema: z.ZodUnion<[z.ZodObject<{
 type Message = z.infer<typeof messageSchema>;
 export declare class TSRedis {
     private redis;
+    isMocked: boolean;
     constructor(options?: RedisOptions & {
         mocked: boolean;
     });
-    disconnect(): void;
-    subscribe(callback: (message: Message) => void): void;
-    publish(message: Message): Promise<number>;
+    disconnect(): void | Promise<void>;
+    subscribe(callback: (message: Message) => void): Promise<void> | undefined;
+    publish(message: Message): Promise<void> | Promise<number>;
 }
 export {};
 //# sourceMappingURL=TSRedis.d.ts.map

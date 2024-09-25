@@ -1,5 +1,4 @@
 import Redis, { type RedisOptions } from 'ioredis';
-import MockRedis from 'ioredis-mock';
 import { z } from 'zod';
 
 const patronTierChangeMessageSchema = z.object({
@@ -21,16 +20,20 @@ type Message = z.infer<typeof messageSchema>;
 const CHANNEL_ID = 'main';
 export class TSRedis {
 	private redis: Redis;
+	public isMocked: boolean;
 
 	constructor(options: RedisOptions & { mocked: boolean } = { mocked: false }) {
-		this.redis = options.mocked ? new MockRedis(options) : new Redis(options);
+		this.redis = options.mocked ? (null as any) : new Redis(options);
+		this.isMocked = options.mocked;
 	}
 
 	disconnect() {
+		if (this.isMocked) return Promise.resolve();
 		return this.redis.disconnect(false);
 	}
 
 	subscribe(callback: (message: Message) => void) {
+		if (this.isMocked) return Promise.resolve();
 		this.redis.subscribe(CHANNEL_ID, err => {
 			if (err) {
 				console.error('Failed to subscribe: ', err);
@@ -51,6 +54,7 @@ export class TSRedis {
 	}
 
 	publish(message: Message) {
+		if (this.isMocked) return Promise.resolve();
 		const parsedMessage = messageSchema.parse(message);
 		return this.redis.publish(CHANNEL_ID, JSON.stringify(parsedMessage));
 	}

@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSRedis = void 0;
 const ioredis_1 = __importDefault(require("ioredis"));
-const ioredis_mock_1 = __importDefault(require("ioredis-mock"));
 const zod_1 = require("zod");
 const patronTierChangeMessageSchema = zod_1.z.object({
     type: zod_1.z.literal('patron_tier_change'),
@@ -27,12 +26,23 @@ class TSRedis {
             writable: true,
             value: void 0
         });
-        this.redis = options.mocked ? new ioredis_mock_1.default(options) : new ioredis_1.default(options);
+        Object.defineProperty(this, "isMocked", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        this.redis = options.mocked ? null : new ioredis_1.default(options);
+        this.isMocked = options.mocked;
     }
     disconnect() {
+        if (this.isMocked)
+            return Promise.resolve();
         return this.redis.disconnect(false);
     }
     subscribe(callback) {
+        if (this.isMocked)
+            return Promise.resolve();
         this.redis.subscribe(CHANNEL_ID, err => {
             if (err) {
                 console.error('Failed to subscribe: ', err);
@@ -52,6 +62,8 @@ class TSRedis {
         });
     }
     publish(message) {
+        if (this.isMocked)
+            return Promise.resolve();
         const parsedMessage = messageSchema.parse(message);
         return this.redis.publish(CHANNEL_ID, JSON.stringify(parsedMessage));
     }

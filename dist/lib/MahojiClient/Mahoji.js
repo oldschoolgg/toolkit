@@ -15,7 +15,7 @@ function convertCommandOptionToAPIOption(option) {
         case discord_js_1.ApplicationCommandOptionType.String: {
             return {
                 ...option,
-                autocomplete: 'autocomplete' in option ?? false
+                autocomplete: 'autocomplete' in option
             };
         }
         default: {

@@ -20,7 +20,7 @@ export function stringMatches(str: string | number = '', str2: string | number =
 }
 
 export function replaceWhitespaceAndUppercase(str: string): string {
-	return str.replace(/\s/g, "").toUpperCase();
+	return str.replace(/\s/g, '').toUpperCase();
 }
 
 export function roboChimpCLRankQuery(userID: bigint) {

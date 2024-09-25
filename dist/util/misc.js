@@ -31,7 +31,7 @@ function stringMatches(str = '', str2 = '') {
     return cleanString(str.toString()) === cleanString(str2.toString());
 }
 function replaceWhitespaceAndUppercase(str) {
-    return str.replace(/\s/g, "").toUpperCase();
+    return str.replace(/\s/g, '').toUpperCase();
 }
 function roboChimpCLRankQuery(userID) {
     return `SELECT COUNT(*)::int
