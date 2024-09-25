@@ -3,13 +3,15 @@
 	"version": "0.0.24",
 	"description": "Oldschoolgg Toolkit",
 	"exports": {
-		"util": {
-			"types": "./dist/esm/util.js",
-			"default": "./dist/esm/util.js"
+		"./util": {
+			"require": "./dist/cjs/util.js",
+			"import": "./dist/esm/util.js",
+			"types": "./dist/util.d.ts"
 		},
-		"structures": {
-			"types": "./dist/esm/structures.js",
-			"default": "./dist/esm/structures.js"
+		"./structures": {
+			"require": "./dist/cjs/structures.js",
+			"import": "./dist/esm/structures.js",
+			"types": "./dist/structures.d.ts"
 		}
 	},
 	"scripts": {
