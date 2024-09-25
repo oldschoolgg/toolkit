@@ -4,6 +4,7 @@ exports.alphabeticalSort = exports.PerkTier = void 0;
 exports.stripEmojis = stripEmojis;
 exports.cleanString = cleanString;
 exports.stringMatches = stringMatches;
+exports.replaceWhitespaceAndUppercase = replaceWhitespaceAndUppercase;
 exports.roboChimpCLRankQuery = roboChimpCLRankQuery;
 exports.formatOrdinal = formatOrdinal;
 exports.toTitleCase = toTitleCase;
@@ -28,6 +29,9 @@ function cleanString(str) {
 }
 function stringMatches(str = '', str2 = '') {
     return cleanString(str.toString()) === cleanString(str2.toString());
+}
+function replaceWhitespaceAndUppercase(str) {
+    return str.replace(/\s/g, "").toUpperCase();
 }
 function roboChimpCLRankQuery(userID) {
     return `SELECT COUNT(*)::int

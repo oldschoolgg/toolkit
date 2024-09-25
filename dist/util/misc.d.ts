@@ -2,6 +2,7 @@ import type { CommandOption } from '../lib/MahojiClient/mahojiTypes';
 export declare function stripEmojis(str: string): string;
 export declare function cleanString(str: string): string;
 export declare function stringMatches(str?: string | number, str2?: string | number): boolean;
+export declare function replaceWhitespaceAndUppercase(str: string): string;
 export declare function roboChimpCLRankQuery(userID: bigint): string;
 export declare function formatOrdinal(number: number): string;
 export declare function toTitleCase(str: string): string;
