@@ -1,6 +1,5 @@
 {
 	"name": "@oldschoolgg/toolkit",
-	"version": "0.0.24",
 	"description": "Oldschoolgg Toolkit",
 	"exports": {
 		".": {
