@@ -2,36 +2,32 @@ const esbuild = require('esbuild');
 
 const entryPoints = ['src/util.ts','src/structures.ts'];
 
-esbuild.build({
-  entryPoints,
-  bundle: true,
-  outdir: 'dist/esm',
-  sourcemap: false,
-  minify: true,
-  platform: 'node',
-  format: 'esm',
-  target: 'node20', 
-  keepNames: true,
-  external: ["discord.js", "ioredis"],
+const baseConfig = {
+	keepNames: true,
+	minify: true,
   treeShaking: true, 
-  loader: {
-    '.json': 'copy',
-  },
-  logLevel: 'silent',
+  bundle: true,
+  entryPoints,
+  platform: 'node',
+  sourcemap: false,
+  external: ["discord.js", "ioredis"],
+	loader: {
+	  '.json': 'copy',
+	},
+}
+
+esbuild.build({
+  ...baseConfig,
+  outdir: 'dist/esm',
+  format: 'esm',
+  outExtension: { '.js': '.mjs' }, 
+  target: 'node20',
 }).catch(() => process.exit(1));
 
 esbuild.build({
-  entryPoints,
-  bundle: true,
+  ...baseConfig,
   outdir: 'dist/cjs',
-  sourcemap: false,
-  minify: true,
-  platform: 'node',
   format: 'cjs',
-  target: 'node20',
-  keepNames: true,
-  external: ["discord.js", "ioredis"],
-  loader: {
-    '.json': 'copy',
-  },
+  outExtension: { '.js': '.cjs' }, 
+  target: 'esnext',
 }).catch(() => process.exit(1));

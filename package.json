@@ -4,18 +4,18 @@
 	"description": "Oldschoolgg Toolkit",
 	"exports": {
 		".": {
-			"require": "./dist/cjs/util.js",
-			"import": "./dist/esm/util.js",
+			"require": "./dist/cjs/util.cjs",
+			"import": "./dist/esm/util.mjs",
 			"types": "./dist/util.d.ts"
 		},
 		"./util": {
-			"require": "./dist/cjs/util.js",
-			"import": "./dist/esm/util.js",
+			"require": "./dist/cjs/util.cjs",
+			"import": "./dist/esm/util.mjs",
 			"types": "./dist/util.d.ts"
 		},
 		"./structures": {
-			"require": "./dist/cjs/structures.js",
-			"import": "./dist/esm/structures.js",
+			"require": "./dist/cjs/structures.cjs",
+			"import": "./dist/esm/structures.mjs",
 			"types": "./dist/structures.d.ts"
 		}
 	},
@@ -61,6 +61,6 @@
 	},
 	"packageManager": "yarn@4.3.1",
 	"resolutions": {
-		"esbuild": "0.21.5"
+		"esbuild": "0.24.0"
 	}
 }
